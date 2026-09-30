@@ -1,18 +1,11 @@
 {
- "updated": "2026-09-30T12:00:00+02:00",
+ "updated": "2026-09-30T08:00:07+00:00",
  "results": [
   {
    "g": 1,
    "h": "Alta Maremma",
    "a": "Manciano Marsiliana",
    "hg": 1,
-   "ag": 1
-  },
-  {
-   "g": 1,
-   "h": "Sticciano",
-   "a": "Paganico",
-   "hg": 3,
    "ag": 1
   },
   {
@@ -56,6 +49,69 @@
    "a": "Amiata",
    "hg": 0,
    "ag": 1
+  },
+  {
+   "g": 1,
+   "h": "Sticciano",
+   "a": "Paganico",
+   "hg": 3,
+   "ag": 1
+  },
+  {
+   "g": 2,
+   "h": "Amiata",
+   "a": "Campagnatico Arcille",
+   "hg": 0,
+   "ag": 1
+  },
+  {
+   "g": 2,
+   "h": "Castiglionese",
+   "a": "Fonteblanda",
+   "hg": 2,
+   "ag": 0
+  },
+  {
+   "g": 2,
+   "h": "Intercomunale Santa Fiora",
+   "a": "Magliano Sant'Andrea",
+   "hg": 1,
+   "ag": 1
+  },
+  {
+   "g": 2,
+   "h": "Manciano Marsiliana",
+   "a": "Ribolla",
+   "hg": 0,
+   "ag": 0
+  },
+  {
+   "g": 2,
+   "h": "Marina",
+   "a": "Alta Maremma",
+   "hg": 2,
+   "ag": 1
+  },
+  {
+   "g": 2,
+   "h": "Montieri",
+   "a": "Cinigiano",
+   "hg": 0,
+   "ag": 0
+  },
+  {
+   "g": 2,
+   "h": "Paganico",
+   "a": "Capalbio",
+   "hg": 2,
+   "ag": 3
+  },
+  {
+   "g": 2,
+   "h": "Sorano",
+   "a": "Sticciano",
+   "hg": 0,
+   "ag": 0
   }
  ]
 }
