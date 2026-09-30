@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Marina Calcio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F5F0;--ink:#111;--mute:#5A5A52;--sea:#111;--foam:#FBE9A0;--buoy:#F5C400;--acc:#8A6500;--card:#fff;--line:#E2DFD0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0D0D0B;--ink:#F3F0E4;--mute:#B3AF9C;--sea:#000;--foam:#2A2500;--acc:#F5C400;--card:#1A1A16;--line:#33332B}}
+:root[data-theme="dark"]{--bg:#0D0D0B;--ink:#F3F0E4;--mute:#B3AF9C;--sea:#000;--foam:#2A2500;--acc:#F5C400;--card:#1A1A16;--line:#33332B}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 Barlow,system-ui,sans-serif}
+h1,h2,h3{font-family:"Barlow Condensed","Arial Narrow",sans-serif;line-height:1;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--buoy);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--sea);color:#fff}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;font:800 26px "Barlow Condensed",sans-serif;text-decoration:none;letter-spacing:.5px}
+.logo b{color:var(--buoy)}
+nav{display:flex;gap:18px;flex-wrap:wrap}
+nav a{text-decoration:none;font-weight:500;font-size:15px;opacity:.9}
+nav a:hover{opacity:1;text-decoration:underline}
+.hero{background:var(--sea) repeating-linear-gradient(90deg,transparent 0 84px,rgba(245,196,0,.07) 84px 168px);color:#fff;padding:56px 0 0;position:relative}
+.hero .wrap{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start}.hero .wrap>*{grid-column:1}.crest{filter:drop-shadow(0 14px 22px rgba(0,0,0,.55));grid-column:2!important;grid-row:1/4;width:clamp(120px,22vw,220px);height:auto}@media (max-width:640px){.hero .wrap{grid-template-columns:1fr}.crest{grid-column:1!important;grid-row:auto;order:-1;width:110px}}.hero h1{font-weight:800;font-size:clamp(52px,11vw,120px);max-width:9ch}
+.hero p{max-width:46ch;color:#D9D5C0;margin:18px 0 0}
+.board{margin-top:36px;background:var(--card);color:var(--ink);border-radius:14px 14px 0 0;padding:22px;display:grid;gap:14px;grid-template-columns:1fr auto 1fr;align-items:center;text-align:center;position:relative;z-index:1}
+.board .t{font:800 clamp(26px,5vw,44px) "Barlow Condensed",sans-serif}
+.board .vs{font:600 18px "Barlow Condensed",sans-serif;color:var(--acc)}
+.board .meta{grid-column:1/-1;color:var(--mute);font-size:15px;border-top:1px solid var(--line);padding-top:12px}
+section{padding:56px 0}
+h2{font-weight:800;font-size:clamp(34px,6vw,52px);margin-bottom:22px}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px}
+.card h3{font-size:26px;margin-bottom:8px}
+.card time{color:var(--mute);font-size:14px}
+.card p{margin:8px 0 0;color:var(--mute)}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:420px}
+th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line)}
+th{font:600 17px "Barlow Condensed",sans-serif;color:var(--mute)}
+tr.us td{background:var(--foam);font-weight:500}
+tr:last-child td{border-bottom:0}
+.res{display:grid;gap:10px}
+.res div{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;align-items:center}
+.res b{font:800 24px "Barlow Condensed",sans-serif;color:var(--acc);text-align:center}
+.res span:last-child{text-align:right}
+.alt{background:var(--foam)}
+.roster{list-style:none;margin:0;padding:0;display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.roster li{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;display:flex;gap:12px;align-items:baseline}
+.roster b{font:800 24px "Barlow Condensed",sans-serif;color:var(--acc);min-width:28px}
+.btn{display:inline-block;background:var(--buoy);color:#111;font-weight:500;padding:12px 22px;border-radius:8px;text-decoration:none}
+.grp{font-size:28px;margin:24px 0 10px}.grp:first-of-type{margin-top:0}.staff{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 16px}.staff dt{color:var(--mute)}.staff dd{margin:0;font-weight:500}.roster{margin-bottom:4px!important}.sponsor{padding:40px 0;background:var(--bg)}.sponsor .wrap{display:flex;align-items:center;gap:24px;flex-wrap:wrap}.sponsor h2{font-size:30px;margin:0}.pill{display:inline-flex;align-items:center;background:#fff;border-radius:16px;padding:12px 26px;box-shadow:0 1px 0 var(--line);border:1px solid var(--line)}.pill img{height:150px;width:auto;display:block}footer{background:var(--sea);color:#D9D5C0;padding:36px 0;font-size:15px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media (max-width:520px){.board{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a class="logo" href="#top"><img src="assets/logo.png" alt="" width="30" height="36" style="height:36px;width:auto">MARINA<b>.</b>CALCIO</a>
+<nav aria-label="Principale"><a href="#risultati">Risultati</a><a href="#partite">Calendario</a><a href="#classifica">Classifica</a><a href="#news">News</a><a href="#squadra">Squadra</a><a href="#societa">Società</a><a href="#contatti">Contatti</a></nav>
+</div></header>
+
+<main id="top">
+<div class="hero"><div class="wrap">
+<img class="crest" src="assets/logo.png" alt="Stemma del Marina Calcio, dal 1952">
+<h1>Giallonero dal 1952.</h1>
+<p>Marina Calcio: la squadra del nostro quartiere. Calendario, risultati, classifica e notizie della stagione, in un posto solo.</p>
+<div class="board" role="region" aria-label="Prossima partita">
+<div class="t" id="b-h">Magliano Sant'Andrea</div><div class="vs">contro</div><div class="t" id="b-a">Marina</div>
+<div class="meta" id="b-meta">Domenica 4 ottobre 2026, ore 15:30 · Campo Cassai, Magliano in Toscana · Seconda Categoria, 3ª giornata</div>
+</div>
+</div></div>
+
+<section id="risultati"><div class="wrap"><h2 id="res-title">Prima giornata</h2><p id="res-date" style="color:var(--mute);margin:0 0 16px">Domenica 20 settembre 2026, Seconda Categoria girone M.</p><div class="res" id="res-list"><div><span>Alta Maremma</span><b>1 – 1</b><span>Manciano Marsiliana</span></div><div><span>Aquile Sticciano</span><b>3 – 1</b><span>Paganico</span></div><div><span>Campagnatico Arcille</span><b>3 – 2</b><span>Castiglionese</span></div><div><span>Capalbio</span><b>0 – 0</b><span>Intercomunale Santa Fiora</span></div><div><span>Cinigiano</span><b>1 – 1</b><span>Marina</span></div><div><span>Fonteblanda</span><b>1 – 1</b><span>Sorano</span></div><div><span>Magliano Sant'Andrea</span><b>3 – 0</b><span>Montieri</span></div><div><span>Ribolla</span><b>0 – 1</b><span>Amiata</span></div></div><p id="res-note" style="color:var(--mute);margin-top:14px">Risultati della 2ª giornata in arrivo.</p></div></section>
+<section id="partite"><div class="wrap"><h2>Calendario</h2><p style="color:var(--mute);max-width:62ch;margin:0 0 18px">Seconda Categoria, girone M, stagione 2026/27. Dal calendario ufficiale LND; i ritorni sono a campi invertiti. Gli orari possono cambiare nei comunicati.</p><div class="scroll"><table><thead><tr><th>G</th><th>Data</th><th>Ora</th><th>Partita</th><th></th></tr></thead><tbody id="cal-body"><tr><td>1</td><td>20/09</td><td>15:30</td><td>Cinigiano – Marina</td><td>Trasferta</td></tr><tr><td>2</td><td>27/09</td><td>15:30</td><td>Marina – Alta Maremma</td><td>Casa</td></tr><tr class="us"><td>3</td><td>04/10</td><td>15:30</td><td>Magliano Sant'Andrea – Marina</td><td>Trasferta</td></tr><tr><td>4</td><td>11/10</td><td>15:30</td><td>Marina – Sticciano</td><td>Casa</td></tr><tr><td>5</td><td>18/10</td><td>15:30</td><td>Capalbio – Marina</td><td>Trasferta</td></tr><tr><td>6</td><td>25/10</td><td>14:30</td><td>Marina – Intercomunale Santa Fiora</td><td>Casa</td></tr><tr><td>7</td><td>01/11</td><td>14:30</td><td>Paganico – Marina</td><td>Trasferta</td></tr><tr><td>8</td><td>08/11</td><td>14:30</td><td>Marina – Sorano</td><td>Casa</td></tr><tr><td>9</td><td>15/11</td><td>14:30</td><td>Montieri – Marina</td><td>Trasferta</td></tr><tr><td>10</td><td>22/11</td><td>14:30</td><td>Amiata – Marina</td><td>Trasferta</td></tr><tr><td>11</td><td>29/11</td><td>14:30</td><td>Marina – Manciano Marsiliana</td><td>Casa</td></tr><tr><td>12</td><td>06/12</td><td>14:30</td><td>Fonteblanda – Marina</td><td>Trasferta</td></tr><tr><td>13</td><td>13/12</td><td>14:30</td><td>Marina – Castiglionese</td><td>Casa</td></tr><tr><td>14</td><td>20/12</td><td>14:30</td><td>Ribolla – Marina</td><td>Trasferta</td></tr><tr><td>15</td><td>03/01</td><td>14:30</td><td>Marina – Campagnatico Arcille</td><td>Casa</td></tr><tr><td>16</td><td>10/01</td><td>14:30</td><td>Marina – Cinigiano</td><td>Casa</td></tr><tr><td>17</td><td>17/01</td><td>15:00</td><td>Alta Maremma – Marina</td><td>Trasferta</td></tr><tr><td>18</td><td>24/01</td><td>15:00</td><td>Marina – Magliano Sant'Andrea</td><td>Casa</td></tr><tr><td>19</td><td>31/01</td><td>15:00</td><td>Sticciano – Marina</td><td>Trasferta</td></tr><tr><td>20</td><td>07/02</td><td>15:00</td><td>Marina – Capalbio</td><td>Casa</td></tr><tr><td>21</td><td>14/02</td><td>15:00</td><td>Intercomunale Santa Fiora – Marina</td><td>Trasferta</td></tr><tr><td>22</td><td>21/02</td><td>15:00</td><td>Marina – Paganico</td><td>Casa</td></tr><tr><td>23</td><td>28/02</td><td>15:00</td><td>Sorano – Marina</td><td>Trasferta</td></tr><tr><td>24</td><td>07/03</td><td>15:00</td><td>Marina – Montieri</td><td>Casa</td></tr><tr><td>25</td><td>14/03</td><td>15:00</td><td>Marina – Amiata</td><td>Casa</td></tr><tr><td>26</td><td>04/04</td><td>15:30</td><td>Manciano Marsiliana – Marina</td><td>Trasferta</td></tr><tr><td>27</td><td>11/04</td><td>15:30</td><td>Marina – Fonteblanda</td><td>Casa</td></tr><tr><td>28</td><td>18/04</td><td>16:00</td><td>Castiglionese – Marina</td><td>Trasferta</td></tr><tr><td>29</td><td>25/04</td><td>16:00</td><td>Marina – Ribolla</td><td>Casa</td></tr><tr><td>30</td><td>02/05</td><td>16:00</td><td>Campagnatico Arcille – Marina</td><td>Trasferta</td></tr></tbody></table></div><p style="color:var(--mute);margin-top:14px">I risultati si aggiornano dopo ogni giornata.</p></div></section>
+
+<section id="classifica" class="alt"><div class="wrap"><h2>Classifica</h2><p style="color:var(--mute);margin:0 0 16px"><span id="std-note">Dopo la 1ª giornata.</span></p><div class="scroll"><table><thead><tr><th>Pos</th><th>Squadra</th><th>Pt</th><th>G</th><th>V</th><th>N</th><th>P</th></tr></thead><tbody id="std-body"><tr><td>1</td><td>Magliano Sant'Andrea</td><td>3</td><td>1</td><td>1</td><td>0</td><td>0</td></tr><tr><td>2</td><td>Aquile Sticciano</td><td>3</td><td>1</td><td>1</td><td>0</td><td>0</td></tr><tr><td>3</td><td>Campagnatico Arcille</td><td>3</td><td>1</td><td>1</td><td>0</td><td>0</td></tr><tr><td>4</td><td>Amiata</td><td>3</td><td>1</td><td>1</td><td>0</td><td>0</td></tr><tr><td>5</td><td>Alta Maremma</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr><tr><td>6</td><td>Cinigiano</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr><tr><td>7</td><td>Fonteblanda</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr><tr><td>8</td><td>Manciano Marsiliana</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr><tr class="us"><td>9</td><td>Marina</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr><tr><td>10</td><td>Sorano</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr><tr><td>11</td><td>Capalbio</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr><tr><td>12</td><td>Intercomunale Santa Fiora</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr><tr><td>13</td><td>Castiglionese</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td></tr><tr><td>14</td><td>Ribolla</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td></tr><tr><td>15</td><td>Paganico</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td></tr><tr><td>16</td><td>Montieri</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td></tr></tbody></table></div></div></section>
+
+<section id="news"><div class="wrap">
+<h2>News</h2>
+<div class="grid">
+<article class="card"><time datetime="2026-09-27">27 settembre 2026</time><h3>[Titolo della notizia]</h3><p>Breve sommario della notizia o del resoconto di partita.</p></article>
+<article class="card"><time datetime="2026-09-20">20 settembre 2026</time><h3>[Titolo della notizia]</h3><p>Breve sommario della notizia o del resoconto di partita.</p></article>
+<article class="card"><time datetime="2026-09-12">12 settembre 2026</time><h3>[Titolo della notizia]</h3><p>Breve sommario della notizia o del resoconto di partita.</p></article>
+</div>
+</div></section>
+
+<section id="squadra" class="alt"><div class="wrap">
+<h2>La rosa</h2>
+<h3 class="grp">Portieri</h3><ul class="roster"><li>Davide Leandri</li><li>Moussa Leye</li></ul>
+<h3 class="grp">Difensori</h3><ul class="roster"><li>Andrea Guerriero</li><li>Edoardo Tozzi</li><li>Gabriele Venturacci Siveri</li><li>Jacopo Trombini</li><li>Leonardo Caporali</li><li>Leonardo Ciacci</li><li>Lorenzo Gambineri</li><li>Nicolò Tropi</li></ul>
+<h3 class="grp">Centrocampisti</h3><ul class="roster"><li>Andrea Coppolecchia</li><li>Daniele Comitale</li><li>Diego Cappelli</li><li>Gabriele Coppolecchia</li><li>Gabriele Ruggiero</li><li>Giacomo Briaschi</li><li>Matteo Menini</li><li>Niccolò Chinellato</li><li>Riccardo Naldi</li><li>Tommaso Balestri</li></ul>
+<h3 class="grp">Attaccanti</h3><ul class="roster"><li>Andrea Cervetti</li><li>Danilo Maiorano</li><li>Francesco Felici</li><li>Matteo Felici</li><li>Michele Corradi</li><li>Nicola Sglavo</li><li>Stefano Colli</li></ul>
+</div></section>
+
+<section id="societa"><div class="wrap">
+<h2>La società</h2>
+<p style="max-width:62ch">Marina Calcio nasce nel 1952 con un'idea semplice: far crescere ragazzi e tifosi attorno al pallone. Qui raccontiamo la nostra storia, i colori, i sostenitori e chi ci accompagna ogni domenica.</p>
+<div class="grid" style="margin:28px 0"><div class="card"><h3>Staff tecnico</h3><dl class="staff"><dt>Allenatore</dt><dd>Gianluca Chinellato</dd><dt>Direttore sportivo</dt><dd>Paolo Chinellato</dd><dt>Preparatore atletico</dt><dd>Luigi Forni</dd><dt>Preparatori dei portieri</dt><dd>Marco Bertini, Pietro Corradi</dd></dl></div><div class="card"><h3>Dirigenza</h3><dl class="staff"><dt>Presidente</dt><dd>Mirko Di Gesaro</dd><dt>Vicepresidente</dt><dd>Gian Franco Ingrasciotta</dd><dt>Segretario generale</dt><dd>Teresa Fabbozzo</dd><dt>Dirigenti</dt><dd>Alberto Ortaggi, Roberto Cassani, Daniele Rossi, Leonardo Cocciolone, Luciano Cozzolino, Lorenzo Ingrasciotta, Renato Ingrasciotta</dd><dt>Main sponsor</dt><dd>Michele Guasti</dd></dl></div></div>
+<p><a class="btn" href="#contatti">Diventa sponsor</a></p>
+</div></section>
+</main>
+
+<section class="sponsor" aria-label="Main sponsor"><div class="wrap"><h2>Main sponsor</h2><a class="pill" href="https://www.grifocarburanti.it" rel="noopener"><img src="assets/grifo.png" alt="Grifo Carburanti"></a></div></section>
+<footer id="contatti"><div class="wrap">
+<div><strong style="color:#fff">Marina Calcio</strong><br>[Indirizzo campo], [città]</div>
+<div>[email@marinacalcio.it]<br>[Telefono]</div>
+<div><a href="https://www.instagram.com/marinacalcio1952/" rel="noopener">Instagram</a> · <a href="https://www.facebook.com/61591621145514" rel="noopener">Facebook</a><br>© 2026 Marina Calcio</div>
+</div></footer>
+<script src="assets/app.js" defer></script>
+</body>
+</html>

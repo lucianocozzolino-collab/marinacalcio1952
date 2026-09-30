@@ -1,0 +1,61 @@
+{
+ "updated": "2026-09-30T12:00:00+02:00",
+ "results": [
+  {
+   "g": 1,
+   "h": "Alta Maremma",
+   "a": "Manciano Marsiliana",
+   "hg": 1,
+   "ag": 1
+  },
+  {
+   "g": 1,
+   "h": "Sticciano",
+   "a": "Paganico",
+   "hg": 3,
+   "ag": 1
+  },
+  {
+   "g": 1,
+   "h": "Campagnatico Arcille",
+   "a": "Castiglionese",
+   "hg": 3,
+   "ag": 2
+  },
+  {
+   "g": 1,
+   "h": "Capalbio",
+   "a": "Intercomunale Santa Fiora",
+   "hg": 0,
+   "ag": 0
+  },
+  {
+   "g": 1,
+   "h": "Cinigiano",
+   "a": "Marina",
+   "hg": 1,
+   "ag": 1
+  },
+  {
+   "g": 1,
+   "h": "Fonteblanda",
+   "a": "Sorano",
+   "hg": 1,
+   "ag": 1
+  },
+  {
+   "g": 1,
+   "h": "Magliano Sant'Andrea",
+   "a": "Montieri",
+   "hg": 3,
+   "ag": 0
+  },
+  {
+   "g": 1,
+   "h": "Ribolla",
+   "a": "Amiata",
+   "hg": 0,
+   "ag": 1
+  }
+ ]
+}
