@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-30T08:00:07+00:00",
+ "updated": "2026-10-03T05:37:11+00:00",
  "results": [
   {
    "g": 1,
@@ -112,6 +112,200 @@
    "a": "Sticciano",
    "hg": 0,
    "ag": 0
+  }
+ ],
+ "matches": [
+  {
+   "g": 1,
+   "h": "Alta Maremma",
+   "a": "Manciano Marsiliana",
+   "date": "2026-09-20",
+   "time": "15:30",
+   "venue": "CECCHI GORI"
+  },
+  {
+   "g": 1,
+   "h": "Campagnatico Arcille",
+   "a": "Castiglionese",
+   "date": "2026-09-20",
+   "time": "15:30",
+   "venue": "ARCILLE"
+  },
+  {
+   "g": 1,
+   "h": "Capalbio",
+   "a": "Intercomunale Santa Fiora",
+   "date": "2026-09-20",
+   "time": "15:30",
+   "venue": "TRONCHETTI"
+  },
+  {
+   "g": 1,
+   "h": "Cinigiano",
+   "a": "Marina",
+   "date": "2026-09-20",
+   "time": "15:30",
+   "venue": "PARCO LA CROCE"
+  },
+  {
+   "g": 1,
+   "h": "Fonteblanda",
+   "a": "Sorano",
+   "date": "2026-09-20",
+   "time": "15:30",
+   "venue": "ARMENTI"
+  },
+  {
+   "g": 1,
+   "h": "Magliano Sant'Andrea",
+   "a": "Montieri",
+   "date": "2026-09-20",
+   "time": "15:30",
+   "venue": "S.ANDREA IN CIVILESCO"
+  },
+  {
+   "g": 1,
+   "h": "Ribolla",
+   "a": "Amiata",
+   "date": "2026-09-20",
+   "time": "15:30",
+   "venue": "SCIREA G."
+  },
+  {
+   "g": 1,
+   "h": "Sticciano",
+   "a": "Paganico",
+   "date": "2026-09-20",
+   "time": "15:30",
+   "venue": "BARETTI"
+  },
+  {
+   "g": 2,
+   "h": "Amiata",
+   "a": "Campagnatico Arcille",
+   "date": "2026-09-27",
+   "time": "15:30",
+   "venue": "CAMPOLMI O."
+  },
+  {
+   "g": 2,
+   "h": "Castiglionese",
+   "a": "Fonteblanda",
+   "date": "2026-09-27",
+   "time": "15:30",
+   "venue": "VALDRIGHI I."
+  },
+  {
+   "g": 2,
+   "h": "Intercomunale Santa Fiora",
+   "a": "Magliano Sant'Andrea",
+   "date": "2026-09-27",
+   "time": "15:30",
+   "venue": "SANTA FIORA"
+  },
+  {
+   "g": 2,
+   "h": "Manciano Marsiliana",
+   "a": "Ribolla",
+   "date": "2026-09-27",
+   "time": "15:30",
+   "venue": "NICCOLAI L."
+  },
+  {
+   "g": 2,
+   "h": "Marina",
+   "a": "Alta Maremma",
+   "date": "2026-09-27",
+   "time": "15:30",
+   "venue": "CHERUBINI S."
+  },
+  {
+   "g": 2,
+   "h": "Montieri",
+   "a": "Cinigiano",
+   "date": "2026-09-27",
+   "time": "15:30",
+   "venue": "MONTIERI"
+  },
+  {
+   "g": 2,
+   "h": "Paganico",
+   "a": "Capalbio",
+   "date": "2026-09-27",
+   "time": "15:30",
+   "venue": "UZIELLI A. E.A."
+  },
+  {
+   "g": 2,
+   "h": "Sorano",
+   "a": "Sticciano",
+   "date": "2026-09-27",
+   "time": "15:30",
+   "venue": "STADIO DEI PINI"
+  },
+  {
+   "g": 3,
+   "h": "Alta Maremma",
+   "a": "Amiata",
+   "date": "2026-10-04",
+   "time": "15:30",
+   "venue": "CECCHI GORI"
+  },
+  {
+   "g": 3,
+   "h": "Campagnatico Arcille",
+   "a": "Fonteblanda",
+   "date": "2026-10-04",
+   "time": "15:30",
+   "venue": "ARCILLE"
+  },
+  {
+   "g": 3,
+   "h": "Capalbio",
+   "a": "Montieri",
+   "date": "2026-10-04",
+   "time": "15:30",
+   "venue": "TRONCHETTI"
+  },
+  {
+   "g": 3,
+   "h": "Cinigiano",
+   "a": "Manciano Marsiliana",
+   "date": "2026-10-04",
+   "time": "15:30",
+   "venue": "PARCO LA CROCE"
+  },
+  {
+   "g": 3,
+   "h": "Magliano Sant'Andrea",
+   "a": "Marina",
+   "date": "2026-10-04",
+   "time": "15:30",
+   "venue": "S.ANDREA IN CIVILESCO"
+  },
+  {
+   "g": 3,
+   "h": "Ribolla",
+   "a": "Castiglionese",
+   "date": "2026-10-04",
+   "time": "15:30",
+   "venue": "SCIREA G."
+  },
+  {
+   "g": 3,
+   "h": "Sorano",
+   "a": "Paganico",
+   "date": "2026-10-04",
+   "time": "15:30",
+   "venue": "STADIO DEI PINI"
+  },
+  {
+   "g": 3,
+   "h": "Sticciano",
+   "a": "Intercomunale Santa Fiora",
+   "date": "2026-10-04",
+   "time": "15:30",
+   "venue": "BARETTI"
   }
  ]
 }
