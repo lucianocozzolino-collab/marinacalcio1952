@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-03T05:37:11+00:00",
+ "updated": "2026-10-04T02:49:38+00:00",
  "results": [
   {
    "g": 1,
@@ -306,6 +306,70 @@
    "date": "2026-10-04",
    "time": "15:30",
    "venue": "BARETTI"
+  },
+  {
+   "g": 4,
+   "h": "Amiata",
+   "a": "Magliano Sant'Andrea",
+   "date": "2026-10-11",
+   "time": "15:30",
+   "venue": "CAMPOLMI O."
+  },
+  {
+   "g": 4,
+   "h": "Campagnatico Arcille",
+   "a": "Ribolla",
+   "date": "2026-10-11",
+   "time": "15:30",
+   "venue": "ARCILLE"
+  },
+  {
+   "g": 4,
+   "h": "Castiglionese",
+   "a": "Cinigiano",
+   "date": "2026-10-11",
+   "time": "15:30",
+   "venue": "VALDRIGHI I."
+  },
+  {
+   "g": 4,
+   "h": "Fonteblanda",
+   "a": "Alta Maremma",
+   "date": "2026-10-11",
+   "time": "15:30",
+   "venue": "ARMENTI"
+  },
+  {
+   "g": 4,
+   "h": "Intercomunale Santa Fiora",
+   "a": "Sorano",
+   "date": "2026-10-11",
+   "time": "15:30",
+   "venue": "SANTA FIORA"
+  },
+  {
+   "g": 4,
+   "h": "Manciano Marsiliana",
+   "a": "Capalbio",
+   "date": "2026-10-11",
+   "time": "15:30",
+   "venue": "NICCOLAI L."
+  },
+  {
+   "g": 4,
+   "h": "Marina",
+   "a": "Sticciano",
+   "date": "2026-10-11",
+   "time": "15:30",
+   "venue": "CHERUBINI S."
+  },
+  {
+   "g": 4,
+   "h": "Montieri",
+   "a": "Paganico",
+   "date": "2026-10-11",
+   "time": "15:30",
+   "venue": "MONTIERI"
   }
  ]
 }
