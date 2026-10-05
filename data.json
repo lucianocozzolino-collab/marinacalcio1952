@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-05T01:09:50+00:00",
+ "updated": "2026-10-05T07:31:32+00:00",
  "results": [
   {
    "g": 1,
@@ -124,8 +124,8 @@
    "g": 3,
    "h": "Campagnatico Arcille",
    "a": "Fonteblanda",
-   "hg": 0,
-   "ag": 0
+   "hg": 2,
+   "ag": 1
   },
   {
    "g": 3,
@@ -152,8 +152,8 @@
    "g": 3,
    "h": "Ribolla",
    "a": "Castiglionese",
-   "hg": 0,
-   "ag": 0
+   "hg": 2,
+   "ag": 2
   },
   {
    "g": 3,
