@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Area riservata · Marina Calcio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F5F0;--ink:#111;--mute:#5A5A52;--sea:#111;--foam:#FBE9A0;--buoy:#F5C400;--acc:#8A6500;--card:#fff;--line:#E2DFD0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0D0D0B;--ink:#F3F0E4;--mute:#B3AF9C;--sea:#000;--foam:#2A2500;--acc:#F5C400;--card:#1A1A16;--line:#33332B}}
+:root[data-theme="dark"]{--bg:#0D0D0B;--ink:#F3F0E4;--mute:#B3AF9C;--sea:#000;--foam:#2A2500;--acc:#F5C400;--card:#1A1A16;--line:#33332B}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 Barlow,system-ui,sans-serif}
+h1,h2,h3{font-family:"Barlow Condensed","Arial Narrow",sans-serif;line-height:1;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--buoy);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--sea);color:#fff}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;font:800 26px "Barlow Condensed",sans-serif;text-decoration:none;letter-spacing:.5px}
+.logo b{color:var(--buoy)}
+nav{display:flex;gap:18px;flex-wrap:wrap}
+nav a{text-decoration:none;font-weight:500;font-size:15px;opacity:.9}
+nav a:hover{opacity:1;text-decoration:underline}
+.hero{background:var(--sea) repeating-linear-gradient(90deg,transparent 0 84px,rgba(245,196,0,.07) 84px 168px);color:#fff;padding:56px 0 0;position:relative}
+.hero .wrap{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start}.hero .wrap>*{grid-column:1}.crest{filter:drop-shadow(0 14px 22px rgba(0,0,0,.55));grid-column:2!important;grid-row:1/4;width:clamp(120px,22vw,220px);height:auto}@media (max-width:640px){.hero .wrap{grid-template-columns:1fr}.crest{grid-column:1!important;grid-row:auto;order:-1;width:110px}}.hero h1{font-weight:800;font-size:clamp(52px,11vw,120px);max-width:9ch}
+.hero p{max-width:46ch;color:#D9D5C0;margin:18px 0 0}
+.board{margin-top:36px;background:var(--card);color:var(--ink);border-radius:14px 14px 0 0;padding:22px;display:grid;gap:14px;grid-template-columns:1fr auto 1fr;align-items:center;text-align:center;position:relative;z-index:1}
+.board .t{font:800 clamp(26px,5vw,44px) "Barlow Condensed",sans-serif}
+.board .vs{font:600 18px "Barlow Condensed",sans-serif;color:var(--acc)}
+.board .meta{grid-column:1/-1;color:var(--mute);font-size:15px;border-top:1px solid var(--line);padding-top:12px}
+section{padding:56px 0}
+h2{font-weight:800;font-size:clamp(34px,6vw,52px);margin-bottom:22px}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px}
+.card h3{font-size:26px;margin-bottom:8px}
+.card time{color:var(--mute);font-size:14px}
+.card p{margin:8px 0 0;color:var(--mute)}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:420px}
+th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line)}
+th{font:600 17px "Barlow Condensed",sans-serif;color:var(--mute)}
+tr.us td{background:var(--foam);font-weight:500}
+tr:last-child td{border-bottom:0}
+.res{display:grid;gap:10px}
+.res div{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;align-items:center}
+.res b{font:800 24px "Barlow Condensed",sans-serif;color:var(--acc);text-align:center}
+.res span:last-child{text-align:right}
+.alt{background:var(--foam)}
+.roster{list-style:none;margin:0;padding:0;display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.roster li{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;display:flex;gap:12px;align-items:baseline}
+.roster b{font:800 24px "Barlow Condensed",sans-serif;color:var(--acc);min-width:28px}
+.btn{display:inline-block;background:var(--buoy);color:#111;font-weight:500;padding:12px 22px;border-radius:8px;text-decoration:none}
+.grp{font-size:28px;margin:24px 0 10px}.grp:first-of-type{margin-top:0}.staff{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 16px}.staff dt{color:var(--mute)}.staff dd{margin:0;font-weight:500}.roster{margin-bottom:4px!important}.sponsor{padding:40px 0;background:var(--bg)}.sponsor .wrap{display:flex;align-items:center;gap:24px;flex-wrap:wrap}.sponsor h2{font-size:30px;margin:0}.pill{display:inline-flex;align-items:center;background:#fff;border-radius:16px;padding:12px 26px;box-shadow:0 1px 0 var(--line);border:1px solid var(--line)}.pill img{height:150px;width:auto;display:block}footer{background:var(--sea);color:#D9D5C0;padding:36px 0;font-size:15px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media (max-width:520px){.board{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.cols{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+form{display:grid;gap:12px}
+label{display:grid;gap:4px;font-size:15px;color:var(--mute)}
+input[type=email],input[type=password],input[type=text]{font:inherit;padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
+button{font:inherit;font-weight:500;border:0;border-radius:8px;padding:11px 20px;background:var(--buoy);color:#111;cursor:pointer}
+button.sec{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.msg{min-height:1.5em;margin:14px 0;color:var(--mute)}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.kpi{display:flex;gap:14px;flex-wrap:wrap;margin:0 0 20px}.kpi .card{flex:1 1 200px}.kpi b{font:800 34px "Barlow Condensed",sans-serif;display:block}
+details summary{cursor:pointer;color:var(--acc)}details ul{margin:8px 0 0;padding-left:18px;color:var(--mute);font-size:15px}
+td.n,th.n{text-align:center}.z{color:var(--mute)}
+[hidden]{display:none!important}
+.tm{margin:14px 0}.tm summary{font-size:19px;padding:6px 0}.tm .scroll{margin-top:8px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a class="logo" href="index.html#top"><img src="assets/logo.png" alt="" width="30" height="36" style="height:36px;width:auto">MARINA<b>.</b>CALCIO</a>
+<nav aria-label="Principale"><a href="index.html#risultati">Risultati</a><a href="index.html#partite">Calendario</a><a href="index.html#classifica">Classifica</a><a href="index.html#news">News</a><a href="index.html#squadra">Squadra</a><a href="index.html#societa">Società</a><a href="index.html#contatti">Contatti</a></nav>
+</div></header>
+<main class="wrap" style="padding:40px 20px 64px">
+<h1 style="font-size:clamp(40px,8vw,64px);margin-bottom:8px">Area riservata</h1>
+<p id="msg" class="msg" role="status"></p>
+
+<div id="v-auth" class="cols" hidden>
+  <div class="card"><h3>Accedi</h3>
+    <form id="f-login"><label>Email<input type="email" id="l-email" required autocomplete="username"></label>
+    <label>Password<input type="password" id="l-pass" required autocomplete="current-password"></label>
+    <button>Accedi</button></form></div>
+  <div class="card"><h3>Registrati</h3>
+    <form id="f-reg"><label>Nome e cognome<input type="text" id="r-nome" required autocomplete="name"></label>
+    <label>Email<input type="email" id="r-email" required autocomplete="email"></label>
+    <label>Password (almeno 8 caratteri)<input type="password" id="r-pass" minlength="8" required autocomplete="new-password"></label>
+    <button>Chiedi accesso</button></form>
+    <p class="z" style="font-size:15px">L'accesso viene attivato dopo l'approvazione dell'amministratore.</p></div>
+</div>
+
+<div id="v-wait" hidden><div class="card"><h3>Richiesta in attesa</h3>
+  <p>Il tuo account è registrato ma non è ancora stato approvato dall'amministratore. Riprova più tardi.</p>
+  <button class="sec" data-out>Esci</button></div></div>
+
+<div id="v-app" hidden>
+  <div class="bar"><span id="who" class="z"></span><button class="sec" data-out>Esci</button></div>
+  <h2 style="font-size:38px">Provvedimenti disciplinari · prima squadra</h2>
+  <div class="kpi" id="kpi"></div>
+  <label style="display:flex;gap:8px;align-items:center;margin-bottom:12px"><input type="checkbox" id="only"> Mostra solo chi ha provvedimenti</label>
+  <div class="scroll"><table><thead><tr><th>Nome</th><th>Ruolo</th><th class="n">Ammonizioni</th><th class="n">Espulsioni</th><th class="n">Altri</th><th>Dettaglio</th></tr></thead><tbody id="tb"></tbody></table></div>
+  <p class="z" style="margin-top:14px;font-size:15px">Fonte: sezione «Decisioni del Giudice Sportivo Territoriale» dei Comunicati Ufficiali del CRT Toscana. Per la Seconda Categoria i comunicati riportano squalifiche, inibizioni, ammende ed espulsioni; le semplici ammonizioni di campionato non sono pubblicate (solo le diffide delle coppe e le squalifiche per recidività). In caso di differenze fa fede il comunicato ufficiale.</p>
+  <h2 style="font-size:38px;margin-top:40px">Girone M · tutte le squadre</h2>
+  <div class="scroll" style="margin-bottom:18px"><table><thead><tr><th>Squadra</th><th class="n">Calciatori</th><th class="n">Allenatori/dirigenti</th><th class="n">Ammende</th><th class="n">Totale</th></tr></thead><tbody id="sum"></tbody></table></div>
+  <div id="teams"></div>
+  <h3 style="margin-top:28px">Comunicati esaminati</h3><div class="scroll"><table><thead><tr><th>CU</th><th>Data</th><th class="n">Letti</th><th class="n">Girone M</th></tr></thead><tbody id="cu"></tbody></table></div>
+  <div id="admin" hidden style="margin-top:36px"><h2 style="font-size:38px">Utenti</h2>
+    <div class="scroll"><table><thead><tr><th>Nome</th><th>Email</th><th>Stato</th><th></th></tr></thead><tbody id="users"></tbody></table></div></div>
+</div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/config.js"></script>
+<script src="assets/riservata.js"></script>
+</body>
+</html>
