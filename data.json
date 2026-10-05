@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-05T07:31:32+00:00",
+ "updated": "2026-10-05T17:19:17+00:00",
  "results": [
   {
    "g": 1,
@@ -139,14 +139,14 @@
    "h": "Cinigiano",
    "a": "Manciano Marsiliana",
    "hg": 0,
-   "ag": 0
+   "ag": 2
   },
   {
    "g": 3,
    "h": "Magliano Sant'Andrea",
    "a": "Marina",
-   "hg": 0,
-   "ag": 0
+   "hg": 1,
+   "ag": 1
   },
   {
    "g": 3,
@@ -166,7 +166,7 @@
    "g": 3,
    "h": "Sticciano",
    "a": "Intercomunale Santa Fiora",
-   "hg": 0,
+   "hg": 1,
    "ag": 0
   }
  ],
@@ -409,7 +409,7 @@
    "a": "Capalbio",
    "date": "2026-10-11",
    "time": "15:30",
-   "venue": "NICCOLAI L."
+   "venue": "BORGO MARSILIANA"
   },
   {
    "g": 4,
