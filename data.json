@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-04T02:49:38+00:00",
+ "updated": "2026-10-05T01:09:50+00:00",
  "results": [
   {
    "g": 1,
@@ -110,6 +110,62 @@
    "g": 2,
    "h": "Sorano",
    "a": "Sticciano",
+   "hg": 0,
+   "ag": 0
+  },
+  {
+   "g": 3,
+   "h": "Alta Maremma",
+   "a": "Amiata",
+   "hg": 0,
+   "ag": 0
+  },
+  {
+   "g": 3,
+   "h": "Campagnatico Arcille",
+   "a": "Fonteblanda",
+   "hg": 0,
+   "ag": 0
+  },
+  {
+   "g": 3,
+   "h": "Capalbio",
+   "a": "Montieri",
+   "hg": 0,
+   "ag": 0
+  },
+  {
+   "g": 3,
+   "h": "Cinigiano",
+   "a": "Manciano Marsiliana",
+   "hg": 0,
+   "ag": 0
+  },
+  {
+   "g": 3,
+   "h": "Magliano Sant'Andrea",
+   "a": "Marina",
+   "hg": 0,
+   "ag": 0
+  },
+  {
+   "g": 3,
+   "h": "Ribolla",
+   "a": "Castiglionese",
+   "hg": 0,
+   "ag": 0
+  },
+  {
+   "g": 3,
+   "h": "Sorano",
+   "a": "Paganico",
+   "hg": 0,
+   "ag": 0
+  },
+  {
+   "g": 3,
+   "h": "Sticciano",
+   "a": "Intercomunale Santa Fiora",
    "hg": 0,
    "ag": 0
   }
