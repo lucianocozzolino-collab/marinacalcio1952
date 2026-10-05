@@ -17,3 +17,9 @@ calendario e prossima partita si calcolano da lì nel browser (`assets/app.js`).
   per adattare il lettore.
 
 Nota: rispetta i termini di uso del portale LND e non aumentare la frequenza delle richieste.
+
+## Area riservata (provvedimenti disciplinari)
+`riservata.html` richiede registrazione e approvazione dell'amministratore. I dati stanno su Supabase
+(non nel repository) e li legge solo chi è approvato. Configurazione: `supabase/setup.sql`,
+`assets/config.js`, due secret GitHub (`SUPABASE_URL`, `SUPABASE_SERVICE_KEY`) e il workflow
+*Leggi comunicati (giustizia sportiva)*.
