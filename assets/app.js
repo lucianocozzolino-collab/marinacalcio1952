@@ -2,13 +2,20 @@
 (async () => {
   try {
     const sec = document.querySelector('#squadra .wrap'); if (!sec) return;
-    const roster = await fetch('roster.json').then(r => r.json());
-    const players = (roster.find(g => g.gruppo === 'Giocatori') || {}).persone || [];
-    if (!players.length) return;
+    const ROLES = [['Portiere', 'Portieri'], ['Difensore', 'Difensori'], ['Centrocampista', 'Centrocampisti'], ['Attaccante', 'Attaccanti']];
+    let groups;
+    try {
+      const roster = await fetch('roster.json').then(r => { if (!r.ok) throw 0; return r.json(); });
+      const pl = (roster.find(g => g.gruppo === 'Giocatori') || {}).persone || [];
+      groups = ROLES.map(([r, t]) => [t, pl.filter(p => p.ruolo === r).map(p => p.nome)]);
+    } catch (e) { // senza roster.json uso i nomi gia' presenti nella pagina
+      groups = [...sec.querySelectorAll('h3.grp')].map(h => [h.textContent.trim(), [...h.nextElementSibling.querySelectorAll('li')].map(li => li.textContent.trim())]);
+    }
+    groups = groups.filter(([, n]) => n.length);
+    if (!groups.length) return;
     const slug = n => n.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
     const ini = n => { const t = n.split(/\s+/); return (t[0][0] + (t.length > 1 ? t[t.length - 1][0] : '')).toUpperCase(); };
     const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-    const ROLES = [['Portiere', 'Portieri'], ['Difensore', 'Difensori'], ['Centrocampista', 'Centrocampisti'], ['Attaccante', 'Attaccanti']];
     const css = document.createElement('style');
     css.textContent = `.pg{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
 .pl{position:relative;margin:0;aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:#111;border:1px solid var(--line)}
@@ -16,11 +23,9 @@
 .pl img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%}
 .pl figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 10px 9px;color:#fff;font:600 18px/1.1 "Barlow Condensed",sans-serif;background:linear-gradient(transparent,rgba(0,0,0,.82))}`;
     document.head.appendChild(css);
-    sec.innerHTML = '<h2>La rosa</h2>' + ROLES.map(([r, t]) => {
-      const list = players.filter(p => p.ruolo === r); if (!list.length) return '';
-      return `<h3 class="grp">${t}</h3><div class="pg">${list.map(p =>
-        `<figure class="pl"><span class="ini" aria-hidden="true">${ini(p.nome)}</span><img src="assets/giocatori/${slug(p.nome)}.jpg" alt="${esc(p.nome)}" loading="lazy" onerror="this.remove()"><figcaption>${esc(p.nome)}</figcaption></figure>`).join('')}</div>`;
-    }).join('');
+    sec.innerHTML = '<h2>La rosa</h2>' + groups.map(([t, names]) =>
+      `<h3 class="grp">${esc(t)}</h3><div class="pg">${names.map(n =>
+        `<figure class="pl"><span class="ini" aria-hidden="true">${ini(n)}</span><img src="assets/giocatori/${slug(n)}.jpg" alt="${esc(n)}" loading="lazy" onerror="this.remove()"><figcaption>${esc(n)}</figcaption></figure>`).join('')}</div>`).join('');
   } catch (e) { /* resta l'elenco con i nomi */ }
 })();
 
