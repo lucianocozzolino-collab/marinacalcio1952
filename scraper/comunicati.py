@@ -2,6 +2,7 @@
 i provvedimenti riferiti al Marina Calcio. Variabili: SUPABASE_URL, SUPABASE_SERVICE_KEY, DEBUG, START_DATE."""
 import datetime as dt
 import io
+import logging
 import os
 import re
 import sys
@@ -11,10 +12,12 @@ from pypdf import PdfReader
 
 LIST_URLS = ["https://toscana.lnd.it/comunicati-regionali/?delegazione=comitato-regionale&stagione=2026/2027",
              "https://toscana.lnd.it/comunicati-regionali/page/2/?stagione=2026/2027"]
+logging.getLogger("pypdf").setLevel(logging.ERROR)  # niente avvisi sui font
 START = dt.date.fromisoformat(os.environ.get("START_DATE", "2026-09-19"))
 DEBUG = os.environ.get("DEBUG", "").lower() == "true"
-SB_URL = os.environ.get("SUPABASE_URL", "").rstrip("/")
-SB_KEY = os.environ.get("SUPABASE_SERVICE_KEY", "")
+SB_URL = os.environ.get("SUPABASE_URL", "").strip().strip("'\"").rstrip("/")
+SB_URL = SB_URL.removesuffix("/rest/v1")
+SB_KEY = os.environ.get("SUPABASE_SERVICE_KEY", "").strip().strip("'\"")
 HEAD = {"User-Agent": "Mozilla/5.0 (MarinaCalcioBot; uso sportivo, richieste rade)"}
 
 FIRST_TEAM = re.compile(r"^(ECCELLENZA|PROMOZIONE|PRIMA CATEGORIA|SECONDA CATEGORIA|TERZA CATEGORIA|COPPA (TOSCANA|ITALIA) (ECCELLENZA|PROMOZIONE|PRIMA|SECONDA|TERZA))")
@@ -140,10 +143,12 @@ def parse_gs(text, cu):
 
 
 def sb(method, path, **kw):
-    h = {"apikey": SB_KEY, "Authorization": "Bearer " + SB_KEY, "Content-Type": "application/json",
-         "Prefer": "resolution=merge-duplicates,return=minimal"}
+    h = {"apikey": SB_KEY, "Content-Type": "application/json", "Prefer": "resolution=merge-duplicates,return=minimal"}
+    if not SB_KEY.startswith("sb_"):  # le nuove chiavi "sb_secret_..." non sono JWT: vanno solo in apikey
+        h["Authorization"] = "Bearer " + SB_KEY
     r = requests.request(method, f"{SB_URL}/rest/v1/{path}", headers=h, timeout=60, **kw)
-    r.raise_for_status()
+    if not r.ok:
+        sys.exit(f"Supabase ha risposto {r.status_code} su {path}: {r.text[:300]}")
     return r
 
 
