@@ -1,3 +1,29 @@
+// rosa-foto: schede con la foto dei giocatori (assets/giocatori/nome-cognome.jpg); senza foto compaiono le iniziali
+(async () => {
+  try {
+    const sec = document.querySelector('#squadra .wrap'); if (!sec) return;
+    const roster = await fetch('roster.json').then(r => r.json());
+    const players = (roster.find(g => g.gruppo === 'Giocatori') || {}).persone || [];
+    if (!players.length) return;
+    const slug = n => n.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    const ini = n => { const t = n.split(/\s+/); return (t[0][0] + (t.length > 1 ? t[t.length - 1][0] : '')).toUpperCase(); };
+    const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    const ROLES = [['Portiere', 'Portieri'], ['Difensore', 'Difensori'], ['Centrocampista', 'Centrocampisti'], ['Attaccante', 'Attaccanti']];
+    const css = document.createElement('style');
+    css.textContent = `.pg{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.pl{position:relative;margin:0;aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:#111;border:1px solid var(--line)}
+.pl .ini{position:absolute;inset:0;display:grid;place-items:center;font:800 56px "Barlow Condensed",sans-serif;color:var(--buoy)}
+.pl img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.pl figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 10px 9px;color:#fff;font:600 18px/1.1 "Barlow Condensed",sans-serif;background:linear-gradient(transparent,rgba(0,0,0,.82))}`;
+    document.head.appendChild(css);
+    sec.innerHTML = '<h2>La rosa</h2>' + ROLES.map(([r, t]) => {
+      const list = players.filter(p => p.ruolo === r); if (!list.length) return '';
+      return `<h3 class="grp">${t}</h3><div class="pg">${list.map(p =>
+        `<figure class="pl"><span class="ini" aria-hidden="true">${ini(p.nome)}</span><img src="assets/giocatori/${slug(p.nome)}.jpg" alt="${esc(p.nome)}" loading="lazy" onerror="this.remove()"><figcaption>${esc(p.nome)}</figcaption></figure>`).join('')}</div>`;
+    }).join('');
+  } catch (e) { /* resta l'elenco con i nomi */ }
+})();
+
 (async () => {
 const $ = id => document.getElementById(id);
 const TEAMS = ["Alta Maremma","Amiata","Campagnatico Arcille","Capalbio","Castiglionese","Cinigiano","Fonteblanda","Intercomunale Santa Fiora","Magliano Sant'Andrea","Manciano Marsiliana","Marina","Montieri","Paganico","Ribolla","Sorano","Sticciano"];
