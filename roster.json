@@ -1,0 +1,185 @@
+[
+ {
+  "gruppo": "Giocatori",
+  "persone": [
+   {
+    "nome": "Davide Leandri",
+    "ruolo": "Portiere"
+   },
+   {
+    "nome": "Moussa Leye",
+    "ruolo": "Portiere"
+   },
+   {
+    "nome": "Andrea Guerriero",
+    "ruolo": "Difensore"
+   },
+   {
+    "nome": "Edoardo Tozzi",
+    "ruolo": "Difensore"
+   },
+   {
+    "nome": "Gabriele Venturacci Siveri",
+    "ruolo": "Difensore"
+   },
+   {
+    "nome": "Jacopo Trombini",
+    "ruolo": "Difensore"
+   },
+   {
+    "nome": "Leonardo Caporali",
+    "ruolo": "Difensore"
+   },
+   {
+    "nome": "Leonardo Ciacci",
+    "ruolo": "Difensore"
+   },
+   {
+    "nome": "Lorenzo Gambineri",
+    "ruolo": "Difensore"
+   },
+   {
+    "nome": "Nicolò Tropi",
+    "ruolo": "Difensore"
+   },
+   {
+    "nome": "Andrea Coppolecchia",
+    "ruolo": "Centrocampista"
+   },
+   {
+    "nome": "Daniele Comitale",
+    "ruolo": "Centrocampista"
+   },
+   {
+    "nome": "Diego Cappelli",
+    "ruolo": "Centrocampista"
+   },
+   {
+    "nome": "Gabriele Coppolecchia",
+    "ruolo": "Centrocampista"
+   },
+   {
+    "nome": "Gabriele Ruggiero",
+    "ruolo": "Centrocampista"
+   },
+   {
+    "nome": "Giacomo Briaschi",
+    "ruolo": "Centrocampista"
+   },
+   {
+    "nome": "Matteo Menini",
+    "ruolo": "Centrocampista"
+   },
+   {
+    "nome": "Niccolò Chinellato",
+    "ruolo": "Centrocampista"
+   },
+   {
+    "nome": "Riccardo Naldi",
+    "ruolo": "Centrocampista"
+   },
+   {
+    "nome": "Tommaso Balestri",
+    "ruolo": "Centrocampista"
+   },
+   {
+    "nome": "Andrea Cervetti",
+    "ruolo": "Attaccante"
+   },
+   {
+    "nome": "Danilo Maiorano",
+    "ruolo": "Attaccante"
+   },
+   {
+    "nome": "Francesco Felici",
+    "ruolo": "Attaccante"
+   },
+   {
+    "nome": "Matteo Felici",
+    "ruolo": "Attaccante"
+   },
+   {
+    "nome": "Michele Corradi",
+    "ruolo": "Attaccante"
+   },
+   {
+    "nome": "Nicola Sglavo",
+    "ruolo": "Attaccante"
+   },
+   {
+    "nome": "Stefano Colli",
+    "ruolo": "Attaccante"
+   }
+  ]
+ },
+ {
+  "gruppo": "Staff tecnico",
+  "persone": [
+   {
+    "nome": "Gianluca Chinellato",
+    "ruolo": "Allenatore"
+   },
+   {
+    "nome": "Paolo Chinellato",
+    "ruolo": "Direttore sportivo"
+   },
+   {
+    "nome": "Luigi Forni",
+    "ruolo": "Preparatore atletico"
+   },
+   {
+    "nome": "Marco Bertini",
+    "ruolo": "Preparatore portieri"
+   },
+   {
+    "nome": "Pietro Corradi",
+    "ruolo": "Preparatore portieri"
+   }
+  ]
+ },
+ {
+  "gruppo": "Dirigenza",
+  "persone": [
+   {
+    "nome": "Mirko Di Gesaro",
+    "ruolo": "Presidente"
+   },
+   {
+    "nome": "Gian Franco Ingrasciotta",
+    "ruolo": "Vicepresidente"
+   },
+   {
+    "nome": "Teresa Fabbozzo",
+    "ruolo": "Segretario generale"
+   },
+   {
+    "nome": "Alberto Ortaggi",
+    "ruolo": "Dirigente"
+   },
+   {
+    "nome": "Roberto Cassani",
+    "ruolo": "Dirigente"
+   },
+   {
+    "nome": "Daniele Rossi",
+    "ruolo": "Dirigente"
+   },
+   {
+    "nome": "Leonardo Cocciolone",
+    "ruolo": "Dirigente"
+   },
+   {
+    "nome": "Luciano Cozzolino",
+    "ruolo": "Dirigente"
+   },
+   {
+    "nome": "Lorenzo Ingrasciotta",
+    "ruolo": "Dirigente"
+   },
+   {
+    "nome": "Renato Ingrasciotta",
+    "ruolo": "Dirigente"
+   }
+  ]
+ }
+]
