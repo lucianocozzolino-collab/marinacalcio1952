@@ -1,9 +1,11 @@
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const say = t => { $('msg').textContent = t || ''; };
+window.addEventListener('unhandledrejection', e => say('Errore: ' + ((e.reason && e.reason.message) || e.reason)));
 const show = id => ['v-auth', 'v-wait', 'v-app'].forEach(x => { $(x).hidden = x !== id; });
 const key = n => String(n).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f']/g, '').split(/\s+/).filter(Boolean).sort().join(' ');
 const TEAMS = ["Alta Maremma","Amiata","Campagnatico Arcille","Capalbio","Castiglionese","Cinigiano","Fonteblanda","Intercomunale Santa Fiora","Magliano Sant'Andrea","Manciano Marsiliana","Marina","Montieri","Paganico","Ribolla","Sorano","Sticciano"];
+const ROSTER_DEFAULT = [{"gruppo":"Giocatori","persone":[{"nome":"Davide Leandri","ruolo":"Portiere"},{"nome":"Moussa Leye","ruolo":"Portiere"},{"nome":"Andrea Guerriero","ruolo":"Difensore"},{"nome":"Edoardo Tozzi","ruolo":"Difensore"},{"nome":"Gabriele Venturacci Siveri","ruolo":"Difensore"},{"nome":"Jacopo Trombini","ruolo":"Difensore"},{"nome":"Leonardo Caporali","ruolo":"Difensore"},{"nome":"Leonardo Ciacci","ruolo":"Difensore"},{"nome":"Lorenzo Gambineri","ruolo":"Difensore"},{"nome":"Nicolò Tropi","ruolo":"Difensore"},{"nome":"Andrea Coppolecchia","ruolo":"Centrocampista"},{"nome":"Daniele Comitale","ruolo":"Centrocampista"},{"nome":"Diego Cappelli","ruolo":"Centrocampista"},{"nome":"Gabriele Coppolecchia","ruolo":"Centrocampista"},{"nome":"Gabriele Ruggiero","ruolo":"Centrocampista"},{"nome":"Giacomo Briaschi","ruolo":"Centrocampista"},{"nome":"Matteo Menini","ruolo":"Centrocampista"},{"nome":"Niccolò Chinellato","ruolo":"Centrocampista"},{"nome":"Riccardo Naldi","ruolo":"Centrocampista"},{"nome":"Tommaso Balestri","ruolo":"Centrocampista"},{"nome":"Andrea Cervetti","ruolo":"Attaccante"},{"nome":"Danilo Maiorano","ruolo":"Attaccante"},{"nome":"Francesco Felici","ruolo":"Attaccante"},{"nome":"Matteo Felici","ruolo":"Attaccante"},{"nome":"Michele Corradi","ruolo":"Attaccante"},{"nome":"Nicola Sglavo","ruolo":"Attaccante"},{"nome":"Stefano Colli","ruolo":"Attaccante"}]},{"gruppo":"Staff tecnico","persone":[{"nome":"Gianluca Chinellato","ruolo":"Allenatore"},{"nome":"Paolo Chinellato","ruolo":"Direttore sportivo"},{"nome":"Luigi Forni","ruolo":"Preparatore atletico"},{"nome":"Marco Bertini","ruolo":"Preparatore portieri"},{"nome":"Pietro Corradi","ruolo":"Preparatore portieri"}]},{"gruppo":"Dirigenza","persone":[{"nome":"Mirko Di Gesaro","ruolo":"Presidente"},{"nome":"Gian Franco Ingrasciotta","ruolo":"Vicepresidente"},{"nome":"Teresa Fabbozzo","ruolo":"Segretario generale"},{"nome":"Alberto Ortaggi","ruolo":"Dirigente"},{"nome":"Roberto Cassani","ruolo":"Dirigente"},{"nome":"Daniele Rossi","ruolo":"Dirigente"},{"nome":"Leonardo Cocciolone","ruolo":"Dirigente"},{"nome":"Luciano Cozzolino","ruolo":"Dirigente"},{"nome":"Lorenzo Ingrasciotta","ruolo":"Dirigente"},{"nome":"Renato Ingrasciotta","ruolo":"Dirigente"}]}];
 const RUOLO = { calciatore: 'Calciatore', allenatore: 'Allenatore', dirigente: 'Dirigente', massaggiatore: 'Massaggiatore', societa: 'Società' };
 const fmt = d => d ? new Date(d + 'T12:00:00').toLocaleDateString('it-IT') : '—';
 
@@ -19,7 +21,7 @@ async function init() {
   if (!p.approved) return show('v-wait');
   show('v-app');
   $('who').textContent = (p.nome || p.email) + (p.is_admin ? ' · amministratore' : '');
-  await loadData();
+  try { await loadData(); } catch (e) { say('Errore nel caricamento dei dati: ' + e.message); }
   if (p.is_admin) loadUsers();
 }
 
@@ -46,7 +48,7 @@ async function loadData() {
   const [a, b, roster] = await Promise.all([
     sb.from('provvedimenti').select('*').eq('prima_squadra', true).order('gara_data', { ascending: false }),
     sb.from('cu_processati').select('*').order('numero', { ascending: false }),
-    fetch('roster.json').then(r => r.json())
+    fetch('roster.json').then(r => r.ok ? r.json() : ROSTER_DEFAULT).catch(() => ROSTER_DEFAULT)
   ]);
   if (a.error || b.error) return say('Errore nel caricamento dei dati: ' + (a.error || b.error).message);
   DATA = { rows: a.data, cu: b.data, roster };
