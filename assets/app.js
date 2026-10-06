@@ -29,6 +29,43 @@
   } catch (e) { /* resta l'elenco con i nomi */ }
 })();
 
+// societa-foto: schede con foto per staff tecnico e dirigenza (stesso schema dei giocatori)
+(async () => {
+  try {
+    const grid = document.querySelector('#societa .grid'); if (!grid) return;
+    let groups;
+    try {
+      const roster = await fetch('roster.json').then(r => { if (!r.ok) throw 0; return r.json(); });
+      groups = roster.filter(g => g.gruppo !== 'Giocatori').map(g => [g.gruppo, g.persone.map(p => [p.nome, p.ruolo])]);
+    } catch (e) { // senza roster.json leggo le coppie ruolo/nome gia' presenti nella pagina
+      groups = [...grid.querySelectorAll('.card')].map(c => [c.querySelector('h3').textContent.trim(),
+        [...c.querySelectorAll('dt')].filter(dt => !/sponsor/i.test(dt.textContent))
+          .flatMap(dt => dt.nextElementSibling.textContent.split(/,\s*/).map(n => [n.trim(), dt.textContent.trim().replace(/^Dirigenti$/, 'Dirigente').replace(/^Preparatori dei portieri$/, 'Preparatore portieri')]))]);
+    }
+    groups = groups.filter(([, l]) => l.length);
+    if (!groups.length) return;
+    const slug = n => n.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    const ini = n => { const t = n.split(/\s+/); return (t[0][0] + (t.length > 1 ? t[t.length - 1][0] : '')).toUpperCase(); };
+    const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    if (!document.getElementById('pl-css')) {
+      const css = document.createElement('style'); css.id = 'pl-css';
+      css.textContent = `.pg{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.pl{position:relative;margin:0;aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:#111;border:1px solid var(--line)}
+.pl .ini{position:absolute;inset:0;display:grid;place-items:center;font:800 56px "Barlow Condensed",sans-serif;color:var(--buoy)}
+.pl img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.pl figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 10px 9px;color:#fff;font:600 18px/1.1 "Barlow Condensed",sans-serif;background:linear-gradient(transparent,rgba(0,0,0,.82))}`;
+      document.head.appendChild(css);
+    }
+    const extra = document.createElement('style');
+    extra.textContent = '.pl small{display:block;margin-top:3px;font:500 13px/1.2 Barlow,sans-serif;opacity:.85}';
+    document.head.appendChild(extra);
+    const sponsor = (document.querySelector('#societa .staff dd:last-child') || {}).textContent;
+    grid.outerHTML = groups.map(([t, list]) => `<h3 class="grp" style="margin-top:26px">${esc(t)}</h3><div class="pg">${list.map(([n, r]) =>
+      `<figure class="pl"><span class="ini" aria-hidden="true">${ini(n)}</span><img src="assets/giocatori/${slug(n)}.jpg" alt="${esc(n)}" loading="lazy" onerror="this.remove()"><figcaption>${esc(n)}<small>${esc(r)}</small></figcaption></figure>`).join('')}</div>`).join('')
+      + (sponsor ? `<p style="margin:22px 0 0;color:var(--mute)">Main sponsor: <b style="color:var(--ink)">${esc(sponsor)}</b></p>` : '');
+  } catch (e) { /* resta la versione con i nomi */ }
+})();
+
 (async () => {
 const $ = id => document.getElementById(id);
 const TEAMS = ["Alta Maremma","Amiata","Campagnatico Arcille","Capalbio","Castiglionese","Cinigiano","Fonteblanda","Intercomunale Santa Fiora","Magliano Sant'Andrea","Manciano Marsiliana","Marina","Montieri","Paganico","Ribolla","Sorano","Sticciano"];
