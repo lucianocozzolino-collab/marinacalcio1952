@@ -8,7 +8,7 @@
   css.textContent = `.pg{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
 .pl{position:relative;margin:0;aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:#111;border:1px solid var(--line)}
 .pl .ini{position:absolute;inset:0;display:grid;place-items:center;font:800 56px "Barlow Condensed",sans-serif;color:var(--buoy)}
-.pl img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.pl img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
 .pl figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 10px 9px;color:#fff;font:600 18px/1.1 "Barlow Condensed",sans-serif;background:linear-gradient(transparent,rgba(0,0,0,.82))}
 .pl img ~ figcaption{display:none}
 .pl small{display:block;margin-top:3px;font:500 13px/1.2 Barlow,sans-serif;opacity:.85}`;
@@ -32,9 +32,15 @@
           return dd.split(/,\s*/).map(n => [n.trim(), role]);
         })]).filter(([, l]) => l.length);
       if (groups.length) grid.outerHTML = groups.map(([t, l]) => `<h3 class="grp" style="margin-top:26px">${esc(t)}</h3><div class="pg">${l.map(([n, r]) => card(n, r)).join('')}</div>`).join('')
-        + (sponsor ? `<p style="margin:22px 0 0;color:var(--mute)">Main sponsor: <b style="color:var(--ink)">${esc(sponsor)}</b></p>` : '');
+        + (sponsor && !/diventa/i.test(sponsor) ? `<p style="margin:22px 0 0;color:var(--mute)">Main sponsor: <b style="color:var(--ink)">${esc(sponsor)}</b></p>` : '');
     }
   } catch (e) { /* resta la versione con i nomi */ }
+  try { // "Diventa sponsor" apre la pagina di contatto
+    const w = document.querySelector('#societa .wrap');
+    const b = w && w.querySelector('a.btn');
+    if (b) b.setAttribute('href', 'sponsor.html');
+    else if (w) w.insertAdjacentHTML('beforeend', '<p style="margin-top:22px"><a class="btn" href="sponsor.html">Diventa sponsor</a></p>');
+  } catch (e) {}
 })();
 
 (async () => {

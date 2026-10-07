@@ -22,7 +22,7 @@ async function init() {
   show('v-app');
   $('who').textContent = (p.nome || p.email) + (p.is_admin ? ' · amministratore' : '');
   try { await loadData(); } catch (e) { say('Errore nel caricamento dei dati: ' + e.message); }
-  if (p.is_admin) loadUsers();
+  if (p.is_admin) { loadUsers(); loadRequests(); }
 }
 
 $('f-login').onsubmit = async e => {
@@ -39,6 +39,8 @@ $('f-reg').onsubmit = async e => {
 };
 document.addEventListener('click', async e => {
   if (e.target.matches('[data-out]')) { await sb.auth.signOut(); init(); }
+  const rd = e.target.closest('[data-read]');
+  if (rd) { await sb.from('richieste_contatto').update({ letto: rd.dataset.read === '1' }).eq('id', rd.dataset.id); loadRequests(); }
   const b = e.target.closest('[data-appr]');
   if (b) { await sb.from('profiles').update({ approved: b.dataset.appr === '1' }).eq('id', b.dataset.id); loadUsers(); }
 });
@@ -113,3 +115,11 @@ async function loadUsers() {
 }
 sb.auth.onAuthStateChange(() => {});
 init();
+
+async function loadRequests() {
+  const { data, error } = await sb.from('richieste_contatto').select('*').order('creato_il', { ascending: false });
+  if (error) return say('Richieste di contatto non leggibili: ' + error.message);
+  $('req').innerHTML = data.length ? data.map(r => `<tr${r.letto ? '' : ' class="us"'}><td>${new Date(r.creato_il).toLocaleString('it-IT', { dateStyle: 'short', timeStyle: 'short' })}</td><td>${esc(r.nome)}</td>
+    <td><a href="mailto:${esc(r.email)}">${esc(r.email)}</a>${r.telefono ? '<br>' + esc(r.telefono) : ''}</td><td>${esc(r.messaggio)}</td>
+    <td><button class="${r.letto ? 'sec' : ''}" data-id="${r.id}" data-read="${r.letto ? 0 : 1}">${r.letto ? 'Da leggere' : 'Letta'}</button></td></tr>`).join('') : '<tr><td colspan="5" class="z">Nessuna richiesta.</td></tr>';
+}
