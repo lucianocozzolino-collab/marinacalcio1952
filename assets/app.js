@@ -41,6 +41,11 @@
     if (b) b.setAttribute('href', 'sponsor.html');
     else if (w) w.insertAdjacentHTML('beforeend', '<p style="margin-top:22px"><a class="btn" href="sponsor.html">Diventa sponsor</a></p>');
   } catch (e) {}
+  try { // figurina del main sponsor accanto al logo (assets/giocatori/michele-guasti.jpg)
+    const w = document.querySelector('.sponsor .wrap');
+    const nome = (w && w.dataset && w.dataset.nome) || 'Michele Guasti';
+    if (w && !w.querySelector('.pl')) w.insertAdjacentHTML('beforeend', `<div style="width:140px">${card(nome, 'Main sponsor')}</div>`);
+  } catch (e) {}
 })();
 
 (async () => {
