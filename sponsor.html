@@ -3,8 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="robots" content="noindex,nofollow">
-<title>Area riservata · Marina Calcio</title>
+<title>Diventa sponsor · Marina Calcio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
@@ -73,6 +72,11 @@ details summary{cursor:pointer;color:var(--acc)}details ul{margin:8px 0 0;paddin
 td.n,th.n{text-align:center}.z{color:var(--mute)}
 [hidden]{display:none!important}
 .tm{margin:14px 0}.tm summary{font-size:19px;padding:6px 0}.tm .scroll{margin-top:8px}
+
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+textarea{font:inherit;padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);min-height:130px;resize:vertical}
+input[type=tel]{font:inherit;padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:15px}.chk input{margin-top:5px}
 </style>
 </head>
 <body>
@@ -80,46 +84,26 @@ td.n,th.n{text-align:center}.z{color:var(--mute)}
 <a class="logo" href="index.html#top"><img src="assets/logo.png" alt="" width="30" height="36" style="height:36px;width:auto">MARINA<b>.</b>CALCIO</a>
 <nav aria-label="Principale"><a href="index.html#risultati">Risultati</a><a href="index.html#partite">Calendario</a><a href="index.html#classifica">Classifica</a><a href="index.html#news">News</a><a href="index.html#squadra">Squadra</a><a href="index.html#societa">Società</a><a href="index.html#contatti">Contatti</a></nav>
 </div></header>
-<main class="wrap" style="padding:40px 20px 64px">
-<h1 style="font-size:clamp(40px,8vw,64px);margin-bottom:8px">Area riservata</h1>
-<p id="msg" class="msg" role="status"></p>
-
-<div id="v-auth" class="cols" hidden>
-  <div class="card"><h3>Accedi</h3>
-    <form id="f-login"><label>Email<input type="email" id="l-email" required autocomplete="username"></label>
-    <label>Password<input type="password" id="l-pass" required autocomplete="current-password"></label>
-    <button>Accedi</button></form></div>
-  <div class="card"><h3>Registrati</h3>
-    <form id="f-reg"><label>Nome e cognome<input type="text" id="r-nome" required autocomplete="name"></label>
-    <label>Email<input type="email" id="r-email" required autocomplete="email"></label>
-    <label>Password (almeno 8 caratteri)<input type="password" id="r-pass" minlength="8" required autocomplete="new-password"></label>
-    <button>Chiedi accesso</button></form>
-    <p class="z" style="font-size:15px">L'accesso viene attivato dopo l'approvazione dell'amministratore.</p></div>
+<main class="wrap" style="padding:40px 20px 64px;max-width:720px">
+<h1 style="font-size:clamp(40px,8vw,64px);margin-bottom:12px">Diventa sponsor</h1>
+<p style="color:var(--mute);margin:0 0 24px">Vuoi sostenere il Marina Calcio? Lasciaci i tuoi dati e un breve messaggio: la società ti ricontatterà per parlarne.</p>
+<div class="card">
+  <form id="f">
+    <label>Nome e cognome, oppure azienda<input type="text" id="nome" required maxlength="120" autocomplete="name"></label>
+    <label>Email<input type="email" id="email" required maxlength="200" autocomplete="email"></label>
+    <label>Telefono (facoltativo)<input type="tel" id="tel" maxlength="40" autocomplete="tel"></label>
+    <label>Messaggio<textarea id="msgtxt" required minlength="5" maxlength="2000"></textarea></label>
+    <div class="hp" aria-hidden="true"><label>Non compilare<input type="text" id="web" tabindex="-1" autocomplete="off"></label></div>
+    <label class="chk"><input type="checkbox" id="ok-priv" required><span>Acconsento al trattamento dei miei dati personali al solo scopo di essere ricontattato dalla società.</span></label>
+    <button>Invia richiesta</button>
+  </form>
+  <div id="ok" hidden><h3>Richiesta inviata</h3><p>Grazie! Ti ricontatteremo appena possibile.</p><p><a class="btn" href="index.html">Torna al sito</a></p></div>
+  <p id="msg" class="msg" role="status"></p>
 </div>
-
-<div id="v-wait" hidden><div class="card"><h3>Richiesta in attesa</h3>
-  <p>Il tuo account è registrato ma non è ancora stato approvato dall'amministratore. Riprova più tardi.</p>
-  <button class="sec" data-out>Esci</button></div></div>
-
-<div id="v-app" hidden>
-  <div class="bar"><span id="who" class="z"></span><button class="sec" data-out>Esci</button></div>
-  <h2 style="font-size:38px">Provvedimenti disciplinari · prima squadra</h2>
-  <div class="kpi" id="kpi"></div>
-  <label style="display:flex;gap:8px;align-items:center;margin-bottom:12px"><input type="checkbox" id="only"> Mostra solo chi ha provvedimenti</label>
-  <div class="scroll"><table><thead><tr><th>Nome</th><th>Ruolo</th><th class="n">Ammonizioni</th><th class="n">Espulsioni</th><th class="n">Altri</th><th>Dettaglio</th></tr></thead><tbody id="tb"></tbody></table></div>
-  <p class="z" style="margin-top:14px;font-size:15px">Fonte: sezione «Decisioni del Giudice Sportivo Territoriale» dei Comunicati Ufficiali del CRT Toscana. Per la Seconda Categoria i comunicati riportano squalifiche, inibizioni, ammende ed espulsioni; le semplici ammonizioni di campionato non sono pubblicate (solo le diffide delle coppe e le squalifiche per recidività). In caso di differenze fa fede il comunicato ufficiale.</p>
-  <h2 style="font-size:38px;margin-top:40px">Girone M · tutte le squadre</h2>
-  <div class="scroll" style="margin-bottom:18px"><table><thead><tr><th>Squadra</th><th class="n">Calciatori</th><th class="n">Allenatori/dirigenti</th><th class="n">Ammende</th><th class="n">Totale</th></tr></thead><tbody id="sum"></tbody></table></div>
-  <div id="teams"></div>
-  <h3 style="margin-top:28px">Comunicati esaminati</h3><div class="scroll"><table><thead><tr><th>CU</th><th>Data</th><th class="n">Letti</th><th class="n">Girone M</th></tr></thead><tbody id="cu"></tbody></table></div>
-  <div id="admin" hidden style="margin-top:36px"><h2 style="font-size:38px">Utenti</h2>
-    <div class="scroll"><table><thead><tr><th>Nome</th><th>Email</th><th>Stato</th><th></th></tr></thead><tbody id="users"></tbody></table></div>
-    <h2 style="font-size:38px;margin-top:36px">Richieste di contatto</h2>
-    <div class="scroll"><table><thead><tr><th>Data</th><th>Chi</th><th>Contatti</th><th>Messaggio</th><th></th></tr></thead><tbody id="req"></tbody></table></div></div>
-</div>
+<p style="margin-top:20px"><a href="index.html#contatti">Altri contatti della società</a></p>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="assets/config.js?v=3"></script>
-<script src="assets/riservata.js?v=4"></script>
+<script src="assets/sponsor.js"></script>
 </body>
 </html>
