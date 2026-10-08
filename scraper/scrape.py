@@ -9,11 +9,14 @@ import json
 import os
 import pathlib
 import re
+import unicodedata
+import base64
 
 from playwright.sync_api import sync_playwright
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 URL = "https://gare.lnd.it/competizione/toscana?campionato=2C&giornata={g}&girone=M&leg=first&stagione=2026"
+LOGHI = ROOT / "assets" / "loghi"
 DEBUG = os.environ.get("DEBUG", "").lower() == "true"
 
 DATES = ["2026-09-20", "2026-09-27", "2026-10-04", "2026-10-11", "2026-10-18", "2026-10-25", "2026-11-01",
@@ -109,6 +112,47 @@ def parse_blocks(text):
             out.append(m)
     return out
 
+def slug(n):
+    n = unicodedata.normalize("NFD", n.lower()).encode("ascii", "ignore").decode()
+    return re.sub(r"[^a-z0-9]+", "-", n).strip("-")
+
+
+JS_IMGS = """() => [...document.querySelectorAll('img')].map(i => {
+  let t = '', n = i;
+  for (let k = 0; k < 4 && n; k++, n = n.parentElement) { const s = (n.innerText || '').trim(); if (s && s.length < 70) { t = s; break; } }
+  return {src: i.currentSrc || i.src || '', alt: i.alt || '', title: i.title || '', text: t};
+})"""
+EXT = {"image/png": "png", "image/svg+xml": "svg", "image/webp": "webp", "image/jpeg": "jpg"}
+
+
+def grab_logos(page, ctx, done, cands):
+    """Scarica gli stemmi delle squadre del girone dalla pagina gia' aperta (una volta sola per squadra)."""
+    for im in page.evaluate(JS_IMGS):
+        cands.append(im)
+        fields = [im["alt"], im["title"]] + im["text"].splitlines()
+        team = next((ALIAS.get(norm(f).strip()) for f in fields if ALIAS.get(norm(f).strip())), None)
+        if not team or team == "Marina" or team in done or not im["src"]:
+            continue
+        try:
+            if im["src"].startswith("data:image/"):
+                head, b64 = im["src"].split(",", 1)
+                body, ctype = base64.b64decode(b64), head[5:].split(";")[0]
+            else:
+                r = ctx.request.get(im["src"], timeout=30000)
+                if not r.ok:
+                    continue
+                body, ctype = r.body(), (r.headers.get("content-type") or "").split(";")[0]
+        except Exception as e:
+            print("logo non scaricato:", team, e)
+            continue
+        ext = EXT.get(ctype)
+        if not ext or not 200 < len(body) < 400_000:
+            continue
+        LOGHI.mkdir(parents=True, exist_ok=True)
+        (LOGHI / f"{slug(team)}.{ext}").write_bytes(body)
+        done.add(team)
+        print("logo salvato:", team, ext)
+
 
 def main():
     data_file = ROOT / "data.json"
@@ -119,6 +163,8 @@ def main():
     rounds = [g for g in range(1, 31) if dt.date.fromisoformat(DATES[g - 1]) <= today + dt.timedelta(days=7)]
     debug = ROOT / "debug"
     found_any = False
+    done_logos = {n for n in TEAMS if n != "Marina" and any(LOGHI.glob(slug(n) + ".*"))}
+    cands = []
 
     with sync_playwright() as p:
         browser = p.chromium.launch()
@@ -143,6 +189,11 @@ def main():
                 print(f"giornata {g}: errore {e}")
                 page.close()
                 continue
+            if len(done_logos) < len(TEAMS) - 1:
+                try:
+                    grab_logos(page, ctx, done_logos, cands)
+                except Exception as e:
+                    print("loghi:", e)
             blocks = parse_blocks(text)
             res = {(b["h"], b["a"]): (b["hg"], b["ag"]) for b in blocks if b["hg"] is not None} if blocks else parse(text)
             print(f"giornata {g}: {len(blocks)} partite, {len(res)} risultati")
@@ -157,6 +208,10 @@ def main():
                 found_any = True
             page.close()
         browser.close()
+    if DEBUG and cands:
+        debug.mkdir(exist_ok=True)
+        (debug / "loghi_candidati.json").write_text(json.dumps(cands[:200], ensure_ascii=False, indent=1), "utf-8")
+    print("stemmi presenti:", len(done_logos), "su", len(TEAMS) - 1)
 
     results = sorted(known.values(), key=lambda r: (r["g"], r["h"]))
     matches = sorted(info.values(), key=lambda r: (r["g"], r["h"]))
