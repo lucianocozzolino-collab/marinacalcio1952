@@ -1,0 +1,21 @@
+Stemmi delle squadre del girone M. Se lo script non li scarica da solo, caricali qui a mano.
+Formato PNG (anche SVG, WEBP o JPG), meglio quadrato con sfondo trasparente.
+Nome file = nome della squadra in minuscolo, senza accenti, con i trattini:
+
+alta-maremma.png  (Alta Maremma)
+amiata.png  (Amiata)
+campagnatico-arcille.png  (Campagnatico Arcille)
+capalbio.png  (Capalbio)
+castiglionese.png  (Castiglionese)
+cinigiano.png  (Cinigiano)
+fonteblanda.png  (Fonteblanda)
+intercomunale-santa-fiora.png  (Intercomunale Santa Fiora)
+magliano-sant-andrea.png  (Magliano Sant'Andrea)
+manciano-marsiliana.png  (Manciano Marsiliana)
+montieri.png  (Montieri)
+paganico.png  (Paganico)
+ribolla.png  (Ribolla)
+sorano.png  (Sorano)
+sticciano.png  (Sticciano)
+
+Il Marina usa assets/logo.png.

@@ -70,6 +70,78 @@
   } catch (e) { /* resta il link al profilo */ }
 })();
 
+// partita: scheda "prossima partita" con stemmi, effetti e conto alla rovescia (stemmi in assets/loghi/nome-squadra.png)
+(() => {
+  const slug = n => n.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const ini = n => n.split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase();
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  window.__crest = img => { const ex = (img.dataset.ex || '').split(',').filter(Boolean); const nx = ex.shift(); if (!nx) return img.remove(); img.dataset.ex = ex.join(','); img.src = img.dataset.base + nx; };
+  const css = document.createElement('style');
+  css.textContent = `.board.mb{display:block;position:relative;overflow:hidden;text-align:center;color:#fff;padding:26px 22px 22px;border-radius:18px 18px 0 0;
+background:radial-gradient(120% 150% at 50% 0%,rgba(245,196,0,.18),transparent 58%),linear-gradient(160deg,#27271e,#11110e);
+box-shadow:0 0 0 1px rgba(245,196,0,.38),0 26px 70px -22px rgba(245,196,0,.4);animation:mbIn .8s cubic-bezier(.2,.8,.2,1) both}
+.board.mb::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent 0 46px,rgba(245,196,0,.055) 46px 92px);pointer-events:none}
+.board.mb::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:38%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.11),transparent);transform:skewX(-20deg);animation:mbShine 7s ease-in-out 1.5s infinite;pointer-events:none}
+.mb>*{position:relative;z-index:1}
+.mb-chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+.mb-chip{font:600 15px "Barlow Condensed",sans-serif;letter-spacing:.04em;padding:4px 14px;border-radius:999px;background:rgba(245,196,0,.14);color:var(--buoy);border:1px solid rgba(245,196,0,.38)}
+.mb-teams{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px}
+.mb-team{display:grid;justify-items:center;gap:14px;min-width:0}
+.mb-crest{position:relative;width:116px;height:116px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 14px 30px rgba(0,0,0,.55),0 0 0 4px rgba(255,255,255,.9);animation:mbFloat 5.5s ease-in-out infinite;transition:transform .35s}
+.mb-team:last-child .mb-crest{animation-delay:-2.7s}
+.mb-team.us .mb-crest{box-shadow:0 14px 30px rgba(0,0,0,.55),0 0 0 4px var(--buoy),0 0 42px rgba(245,196,0,.5)}
+.mb-crest:hover{transform:scale(1.08) rotate(-4deg)}
+.mb-crest img{width:80%;height:80%;object-fit:contain}
+.mb-ini{position:absolute;font:800 40px "Barlow Condensed",sans-serif;color:#111}
+.mb-crest img ~ .mb-ini{display:none}
+.mb-name{font:800 clamp(24px,4.6vw,42px)/1 "Barlow Condensed",sans-serif;overflow-wrap:anywhere}
+.mb-vs{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;font:800 25px "Barlow Condensed",sans-serif;color:#111;background:linear-gradient(135deg,#ffe066,#F5C400 60%,#d9a400);animation:mbPulse 2.6s ease-out infinite}
+.mb-info{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 24px;margin-top:24px;padding-top:16px;border-top:1px solid rgba(255,255,255,.14);color:#EDE9D5;font-size:16px}
+.mb-info span{display:inline-flex;align-items:center;gap:8px}
+.mb-info svg{width:18px;height:18px;flex:none;stroke:var(--buoy);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mb-count{display:flex;justify-content:center;gap:10px;margin-top:18px;min-height:64px}
+.mb-count div{min-width:66px;padding:9px 10px;border-radius:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13)}
+.mb-count b{display:block;font:800 30px/1 "Barlow Condensed",sans-serif;color:var(--buoy);font-variant-numeric:tabular-nums}
+.mb-count small{font-size:12px;color:#BDB89F}
+.mb-live{align-self:center;font:800 26px "Barlow Condensed",sans-serif;color:var(--buoy);animation:mbPulseT 1.4s ease-in-out infinite}
+@keyframes mbIn{from{opacity:0;transform:translateY(20px)}}
+@keyframes mbFloat{50%{transform:translateY(-7px)}}
+@keyframes mbShine{0%,55%{left:-60%}100%{left:135%}}
+@keyframes mbPulse{0%{box-shadow:0 0 0 0 rgba(245,196,0,.55)}100%{box-shadow:0 0 0 20px rgba(245,196,0,0)}}
+@keyframes mbPulseT{50%{opacity:.45}}
+@media (max-width:600px){.mb-teams{grid-template-columns:1fr;gap:12px}.mb-crest{width:96px;height:96px}.mb-vs{width:48px;height:48px;font-size:20px}.mb-count div{min-width:58px}}
+@media (prefers-reduced-motion:reduce){.board.mb,.board.mb::after,.mb-crest,.mb-vs,.mb-live{animation:none}}`;
+  document.head.appendChild(css);
+  const ICON = { cal: '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
+    clock: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+    pin: '<svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>' };
+  const crest = n => n === 'Marina'
+    ? '<div class="mb-crest"><img alt="" src="assets/logo.png"></div>'
+    : `<div class="mb-crest"><img alt="" data-base="assets/loghi/${slug(n)}." data-ex="svg,webp,jpg" src="assets/loghi/${slug(n)}.png" onerror="__crest(this)"><span class="mb-ini" aria-hidden="true">${esc(ini(n))}</span></div>`;
+  let timer;
+  window.__board = ({ g, h, a, t, day, venue }) => {
+    const el = document.querySelector('.board'); if (!el) return;
+    const when = new Date(`${day}T${t}:00`);
+    const dateTxt = when.toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    el.className = 'board mb';
+    el.setAttribute('aria-label', `Prossima partita: ${h} contro ${a}`);
+    el.innerHTML = `<div class="mb-chips"><span class="mb-chip">Seconda Categoria · ${g}ª giornata</span><span class="mb-chip">${h === 'Marina' ? 'In casa' : 'In trasferta'}</span></div>
+<div class="mb-teams"><div class="mb-team${h === 'Marina' ? ' us' : ''}">${crest(h)}<div class="mb-name">${esc(h)}</div></div><div class="mb-vs" aria-hidden="true">VS</div><div class="mb-team${a === 'Marina' ? ' us' : ''}">${crest(a)}<div class="mb-name">${esc(a)}</div></div></div>
+<div class="mb-info"><span>${ICON.cal}${esc(dateTxt)}</span><span>${ICON.clock}ore ${esc(t)}</span>${venue ? `<span>${ICON.pin}Campo ${esc(venue)}</span>` : ''}</div>
+<div class="mb-count" id="mb-count"></div>`;
+    clearInterval(timer);
+    const box = (v, l) => `<div><b>${String(v).padStart(2, '0')}</b><small>${l}</small></div>`;
+    const tick = () => {
+      const c = document.getElementById('mb-count'); if (!c) return clearInterval(timer);
+      const ms = when - new Date();
+      if (ms > 0) { const s = Math.floor(ms / 1000); c.innerHTML = box(Math.floor(s / 86400), 'giorni') + box(Math.floor(s % 86400 / 3600), 'ore') + box(Math.floor(s % 3600 / 60), 'minuti') + box(s % 60, 'secondi'); }
+      else if (ms > -2 * 3600e3) c.innerHTML = '<span class="mb-live">Si gioca ora</span>';
+      else { c.innerHTML = ''; clearInterval(timer); }
+    };
+    tick(); timer = setInterval(tick, 1000);
+  };
+})();
+
 (async () => {
 const $ = id => document.getElementById(id);
 const TEAMS = ["Alta Maremma","Amiata","Campagnatico Arcille","Capalbio","Castiglionese","Cinigiano","Fonteblanda","Intercomunale Santa Fiora","Magliano Sant'Andrea","Manciano Marsiliana","Marina","Montieri","Paganico","Ribolla","Sorano","Sticciano"];
@@ -112,7 +184,10 @@ let next = null;
   else { const i = info(g, h, a); const day = i.date || DATES[g-1]; if (!next && new Date(day + 'T23:59:59') >= new Date()) { next = {g, h, a, t: i.time || tr.cells[2].textContent, day, venue: i.venue ? cap(i.venue) : (VENUE[h] || '')}; tr.className = 'us'; } }
 });
 if (next) {
+  if (window.__board) window.__board({ ...next, venue: C[next.g] || next.venue });
+  else {
   $('b-h').textContent = next.h; $('b-a').textContent = next.a;
   $('b-meta').textContent = `${fmt(next.day)}, ore ${next.t} · Campo ${C[next.g] || next.venue} · Seconda Categoria, ${next.g}ª giornata`;
+  }
 }
 })();
