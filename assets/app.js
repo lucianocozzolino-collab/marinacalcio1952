@@ -110,7 +110,14 @@ box-shadow:0 0 0 1px rgba(245,196,0,.38),0 26px 70px -22px rgba(245,196,0,.4);an
 @keyframes mbPulse{0%{box-shadow:0 0 0 0 rgba(245,196,0,.55)}100%{box-shadow:0 0 0 20px rgba(245,196,0,0)}}
 @keyframes mbPulseT{50%{opacity:.45}}
 @media (max-width:600px){.mb-teams{grid-template-columns:1fr;gap:12px}.mb-crest{width:114px;height:114px}.mb-vs{width:48px;height:48px;font-size:20px}.mb-count div{min-width:58px}}
-@media (prefers-reduced-motion:reduce){.board.mb,.board.mb::after,.mb-crest,.mb-vs,.mb-live{animation:none}}`;
+@media (prefers-reduced-motion:reduce){.board.mb,.board.mb::after,.mb-crest,.mb-vs,.mb-live{animation:none}}
+.tl{position:relative;display:inline-grid;place-items:center;flex:none;width:28px;height:28px;border-radius:50%;background:#fff;box-shadow:0 0 0 1px var(--line)}
+.tl img{width:68%;height:68%;object-fit:contain}
+.tl i{position:absolute;font:800 12px "Barlow Condensed",sans-serif;font-style:normal;color:#111}
+.tl img ~ i{display:none}
+td .tl{width:26px;height:26px}
+.tn{display:inline-flex;align-items:center;flex-wrap:wrap;gap:4px 10px}.tn em{font-style:normal;color:var(--mute)}
+.res span{display:flex;align-items:center;gap:10px}.res span:last-child{justify-content:flex-end}`;
   document.head.appendChild(css);
   const ICON = { cal: '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
     clock: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
@@ -118,6 +125,9 @@ box-shadow:0 0 0 1px rgba(245,196,0,.38),0 26px 70px -22px rgba(245,196,0,.4);an
   const crest = n => n === 'Marina'
     ? '<div class="mb-crest"><img alt="" src="assets/logo.png"></div>'
     : `<div class="mb-crest"><img alt="" data-base="assets/loghi/${slug(n)}." data-ex="svg,webp,jpg" src="assets/loghi/${slug(n)}.png" onerror="__crest(this)"><span class="mb-ini" aria-hidden="true">${esc(ini(n))}</span></div>`;
+  window.__tlogo = n => n === 'Marina'
+    ? '<span class="tl"><img alt="" src="assets/logo.png"></span>'
+    : `<span class="tl"><img alt="" loading="lazy" data-base="assets/loghi/${slug(n)}." data-ex="svg,webp,jpg" src="assets/loghi/${slug(n)}.png" onerror="__crest(this)"><i aria-hidden="true">${esc(ini(n))}</i></span>`;
   let timer;
   window.__board = ({ g, h, a, t, day, venue }) => {
     const el = document.querySelector('.board'); if (!el) return;
@@ -167,11 +177,12 @@ for (const m of R) {
   else { a.x++; b.x++; a.pt++; b.pt++; }
 }
 const rows = Object.values(S).sort((x, y) => y.pt - x.pt || (y.gf - y.gs) - (x.gf - x.gs) || y.gf - x.gf || x.n.localeCompare(y.n, 'it'));
-$('std-body').innerHTML = rows.map((t, i) => `<tr${t.n === 'Marina' ? ' class="us"' : ''}><td>${i+1}</td><td>${t.n}</td><td>${t.pt}</td><td>${t.g}</td><td>${t.v}</td><td>${t.x}</td><td>${t.p}</td></tr>`).join('');
+const logo = n => window.__tlogo ? window.__tlogo(n) : '';
+$('std-body').innerHTML = rows.map((t, i) => `<tr${t.n === 'Marina' ? ' class="us"' : ''}><td>${i+1}</td><td><span class="tn">${logo(t.n)}<span>${t.n}</span></span></td><td>${t.pt}</td><td>${t.g}</td><td>${t.v}</td><td>${t.x}</td><td>${t.p}</td></tr>`).join('');
 const last = Math.max(...R.map(m => m.g));
 $('res-title').textContent = last + 'ª giornata';
 $('res-date').textContent = dt(last) + ', Seconda Categoria girone M.';
-$('res-list').innerHTML = R.filter(m => m.g === last).map(m => `<div><span>${m.h}</span><b>${m.hg} – ${m.ag}</b><span>${m.a}</span></div>`).join('');
+$('res-list').innerHTML = R.filter(m => m.g === last).map(m => `<div><span>${logo(m.h)}${m.h}</span><b>${m.hg} – ${m.ag}</b><span>${m.a}${logo(m.a)}</span></div>`).join('');
 $('std-note').textContent = 'Dopo la ' + last + 'ª giornata.';
 $('res-note').textContent = d.updated ? 'Aggiornato il ' + new Date(d.updated).toLocaleString('it-IT', {dateStyle:'long', timeStyle:'short'}) : '';
 let next = null;
@@ -180,8 +191,8 @@ let next = null;
   const g = +tr.cells[0].textContent;
   const [h, a] = tr.cells[3].textContent.split(' – ').map(s => s.replace(/ \(.*\)$/, ''));
   const m = R.find(x => x.g === g && x.h === h && x.a === a);
-  if (m) tr.cells[3].innerHTML = `${h} – ${a} <b>(${m.hg}–${m.ag})</b>`;
-  else { const i = info(g, h, a); const day = i.date || DATES[g-1]; if (!next && new Date(day + 'T23:59:59') >= new Date()) { next = {g, h, a, t: i.time || tr.cells[2].textContent, day, venue: i.venue ? cap(i.venue) : (VENUE[h] || '')}; tr.className = 'us'; } }
+  tr.cells[3].innerHTML = `<span class="tn">${logo(h)}<span>${h}</span><em>–</em>${logo(a)}<span>${a}</span></span>` + (m ? ` <b>(${m.hg}–${m.ag})</b>` : '');
+  if (!m) { const i = info(g, h, a); const day = i.date || DATES[g-1]; if (!next && new Date(day + 'T23:59:59') >= new Date()) { next = {g, h, a, t: i.time || tr.cells[2].textContent, day, venue: i.venue ? cap(i.venue) : (VENUE[h] || '')}; tr.className = 'us'; } }
 });
 if (next) {
   if (window.__board) window.__board({ ...next, venue: C[next.g] || next.venue });
