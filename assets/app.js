@@ -48,6 +48,28 @@
   } catch (e) {}
 })();
 
+// news: riquadro della Pagina Facebook (si aggiorna da solo) + post Instagram scelti dall'amministratore (tabella "news" su Supabase)
+(async () => {
+  const grid = document.querySelector('#news .grid'); if (!grid) return;
+  const IG = 'https://www.instagram.com/marinacalcio1952/';
+  const FB = 'https://www.facebook.com/61591621145514'; // indirizzo della Pagina Facebook (deve essere pubblica)
+  const fb = `<div style="min-width:0"><iframe title="Ultime novità dalla Pagina Facebook del Marina Calcio" src="https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(FB)}&amp;tabs=timeline&amp;width=500&amp;height=640&amp;small_header=true&amp;adapt_container_width=true&amp;hide_cover=true&amp;show_facepile=false" width="500" height="640" style="border:0;overflow:hidden;max-width:100%;background:#fff;border-radius:10px" scrolling="no" loading="lazy" allow="encrypted-media; clipboard-write; picture-in-picture; web-share"></iframe><p style="margin:8px 0 0"><a href="${FB}" rel="noopener">Apri la Pagina Facebook</a></p></div>`;
+  const cta = `<article class="card"><h3>Le novità sono su Instagram</h3><p>Foto, risultati e aggiornamenti della squadra sul profilo ufficiale.</p><p><a class="btn" href="${IG}" rel="noopener">Seguici su Instagram</a></p></article>`;
+  grid.innerHTML = cta + fb;
+  try {
+    if (!window.CFG) await new Promise(res => { const s = document.createElement('script'); s.src = 'assets/config.js?v=3'; s.onload = res; s.onerror = res; document.head.appendChild(s); });
+    if (!window.CFG || String(CFG.url).startsWith('INCOLLA')) return;
+    const r = await fetch(`${CFG.url}/rest/v1/news?select=url&visibile=eq.true&order=creato_il.desc&limit=6`, { headers: { apikey: CFG.key } });
+    if (!r.ok) return;
+    const posts = (await r.json()).filter(p => /^https:\/\/www\.instagram\.com\/(p|reel)\/[\w-]+\/$/.test(p.url));
+    if (!posts.length) return;
+    grid.style.gridTemplateColumns = 'repeat(auto-fit,minmax(min(100%,326px),1fr))';
+    grid.innerHTML = posts.map(p => `<div style="min-width:0"><blockquote class="instagram-media" data-instgrm-permalink="${p.url}?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#fff;border:1px solid var(--line);border-radius:10px;margin:0;max-width:540px;min-width:0;width:100%"><a href="${p.url}" rel="noopener">Vedi il post su Instagram</a></blockquote></div>`).join('') + fb
+      + `<p style="grid-column:1/-1;margin:6px 0 0"><a class="btn" href="${IG}" rel="noopener">Tutti i post su Instagram</a></p>`;
+    const s = document.createElement('script'); s.async = true; s.src = 'https://www.instagram.com/embed.js'; document.body.appendChild(s);
+  } catch (e) { /* resta il link al profilo */ }
+})();
+
 (async () => {
 const $ = id => document.getElementById(id);
 const TEAMS = ["Alta Maremma","Amiata","Campagnatico Arcille","Capalbio","Castiglionese","Cinigiano","Fonteblanda","Intercomunale Santa Fiora","Magliano Sant'Andrea","Manciano Marsiliana","Marina","Montieri","Paganico","Ribolla","Sorano","Sticciano"];
