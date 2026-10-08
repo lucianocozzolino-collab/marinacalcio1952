@@ -87,12 +87,12 @@ box-shadow:0 0 0 1px rgba(245,196,0,.38),0 26px 70px -22px rgba(245,196,0,.4);an
 .mb-chip{font:600 15px "Barlow Condensed",sans-serif;letter-spacing:.04em;padding:4px 14px;border-radius:999px;background:rgba(245,196,0,.14);color:var(--buoy);border:1px solid rgba(245,196,0,.38)}
 .mb-teams{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px}
 .mb-team{display:grid;justify-items:center;gap:14px;min-width:0}
-.mb-crest{position:relative;width:116px;height:116px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 14px 30px rgba(0,0,0,.55),0 0 0 4px rgba(255,255,255,.9);animation:mbFloat 5.5s ease-in-out infinite;transition:transform .35s}
+.mb-crest{position:relative;width:138px;height:138px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 14px 30px rgba(0,0,0,.55),0 0 0 4px rgba(255,255,255,.9);animation:mbFloat 5.5s ease-in-out infinite;transition:transform .35s}
 .mb-team:last-child .mb-crest{animation-delay:-2.7s}
 .mb-team.us .mb-crest{box-shadow:0 14px 30px rgba(0,0,0,.55),0 0 0 4px var(--buoy),0 0 42px rgba(245,196,0,.5)}
 .mb-crest:hover{transform:scale(1.08) rotate(-4deg)}
-.mb-crest img{width:80%;height:80%;object-fit:contain}
-.mb-ini{position:absolute;font:800 40px "Barlow Condensed",sans-serif;color:#111}
+.mb-crest img{width:68%;height:68%;object-fit:contain}
+.mb-ini{position:absolute;font:800 46px "Barlow Condensed",sans-serif;color:#111}
 .mb-crest img ~ .mb-ini{display:none}
 .mb-name{font:800 clamp(24px,4.6vw,42px)/1 "Barlow Condensed",sans-serif;overflow-wrap:anywhere}
 .mb-vs{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;font:800 25px "Barlow Condensed",sans-serif;color:#111;background:linear-gradient(135deg,#ffe066,#F5C400 60%,#d9a400);animation:mbPulse 2.6s ease-out infinite}
@@ -109,7 +109,7 @@ box-shadow:0 0 0 1px rgba(245,196,0,.38),0 26px 70px -22px rgba(245,196,0,.4);an
 @keyframes mbShine{0%,55%{left:-60%}100%{left:135%}}
 @keyframes mbPulse{0%{box-shadow:0 0 0 0 rgba(245,196,0,.55)}100%{box-shadow:0 0 0 20px rgba(245,196,0,0)}}
 @keyframes mbPulseT{50%{opacity:.45}}
-@media (max-width:600px){.mb-teams{grid-template-columns:1fr;gap:12px}.mb-crest{width:96px;height:96px}.mb-vs{width:48px;height:48px;font-size:20px}.mb-count div{min-width:58px}}
+@media (max-width:600px){.mb-teams{grid-template-columns:1fr;gap:12px}.mb-crest{width:114px;height:114px}.mb-vs{width:48px;height:48px;font-size:20px}.mb-count div{min-width:58px}}
 @media (prefers-reduced-motion:reduce){.board.mb,.board.mb::after,.mb-crest,.mb-vs,.mb-live{animation:none}}`;
   document.head.appendChild(css);
   const ICON = { cal: '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
