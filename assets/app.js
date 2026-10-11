@@ -70,6 +70,34 @@
   } catch (e) { /* resta il link al profilo */ }
 })();
 
+// telefono: testata compatta, hero centrato, sponsor in colonna, elenchi piu' stretti
+(() => {
+  const css = document.createElement('style');
+  css.textContent = `@media (max-width:640px){
+header .wrap{padding-top:8px;padding-bottom:4px;gap:2px}
+header .logo{font-size:22px}
+header nav{width:100%;flex-wrap:nowrap;overflow-x:auto;gap:22px;padding:6px 0 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(90deg,#000 90%,transparent);mask-image:linear-gradient(90deg,#000 90%,transparent)}
+header nav::-webkit-scrollbar{display:none}
+header nav a{white-space:nowrap;font-size:16px}
+section{padding:40px 0}
+.hero{padding-top:26px}
+.hero .wrap{grid-template-columns:1fr!important;justify-items:center;text-align:center;gap:14px}
+.hero .crest{grid-column:1!important;grid-row:auto!important;order:-1;width:172px!important;height:auto;padding:12px;background:radial-gradient(circle,rgba(245,196,0,.26),transparent 68%);filter:drop-shadow(0 16px 26px rgba(0,0,0,.65)) drop-shadow(0 0 30px rgba(245,196,0,.3));animation:mbFloat 6s ease-in-out infinite}
+.hero h1{max-width:none;margin:0 auto;text-align:center;font-size:clamp(46px,15vw,70px)}
+.hero p{margin:4px auto 0;max-width:30ch;font-size:17px;text-align:center}
+.hero .board{width:100%}
+.res div{padding:10px 12px;gap:8px}.res span{font-size:15px}
+.sponsor{padding:30px 0}
+.sponsor .wrap{justify-content:center;align-items:center;gap:16px}
+.sponsor h2{flex:0 0 100%;text-align:center}
+.sponsor .pill{padding:10px 14px}.sponsor .pill img{height:132px}
+#societa .btn{display:block;text-align:center}
+footer .wrap{flex-direction:column;text-align:center}
+}
+@media (max-width:640px) and (prefers-reduced-motion:reduce){.hero .crest{animation:none}}`;
+  document.head.appendChild(css);
+})();
+
 // partita: scheda "prossima partita" con stemmi, effetti e conto alla rovescia (stemmi in assets/loghi/nome-squadra.png)
 (() => {
   const slug = n => n.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
@@ -95,7 +123,10 @@ box-shadow:0 0 0 1px rgba(245,196,0,.38),0 26px 70px -22px rgba(245,196,0,.4);an
 .mb-ini{position:absolute;font:800 46px "Barlow Condensed",sans-serif;color:#111}
 .mb-crest img ~ .mb-ini{display:none}
 .mb-name{font:800 clamp(24px,4.6vw,42px)/1 "Barlow Condensed",sans-serif;overflow-wrap:anywhere}
-.mb-vs{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;font:800 25px "Barlow Condensed",sans-serif;color:#111;background:linear-gradient(135deg,#ffe066,#F5C400 60%,#d9a400);animation:mbPulse 2.6s ease-out infinite}
+.mb-vs{position:relative;display:grid;place-items:center;width:120px;height:104px}
+.mb-vs img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 6px 16px rgba(245,196,0,.45));animation:mbVs 2.8s ease-in-out infinite}
+.mb-vs span{position:absolute;font:800 30px "Barlow Condensed",sans-serif;color:var(--buoy)}
+.mb-vs img ~ span{display:none}
 .mb-info{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 24px;margin-top:24px;padding-top:16px;border-top:1px solid rgba(255,255,255,.14);color:#EDE9D5;font-size:16px}
 .mb-info span{display:inline-flex;align-items:center;gap:8px}
 .mb-info svg{width:18px;height:18px;flex:none;stroke:var(--buoy);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -107,10 +138,10 @@ box-shadow:0 0 0 1px rgba(245,196,0,.38),0 26px 70px -22px rgba(245,196,0,.4);an
 @keyframes mbIn{from{opacity:0;transform:translateY(20px)}}
 @keyframes mbFloat{50%{transform:translateY(-7px)}}
 @keyframes mbShine{0%,55%{left:-60%}100%{left:135%}}
-@keyframes mbPulse{0%{box-shadow:0 0 0 0 rgba(245,196,0,.55)}100%{box-shadow:0 0 0 20px rgba(245,196,0,0)}}
+@keyframes mbVs{50%{transform:scale(1.07);filter:drop-shadow(0 8px 24px rgba(255,214,64,.8))}}
 @keyframes mbPulseT{50%{opacity:.45}}
-@media (max-width:600px){.mb-teams{grid-template-columns:1fr;gap:12px}.mb-crest{width:114px;height:114px}.mb-vs{width:48px;height:48px;font-size:20px}.mb-count div{min-width:58px}}
-@media (prefers-reduced-motion:reduce){.board.mb,.board.mb::after,.mb-crest,.mb-vs,.mb-live{animation:none}}
+@media (max-width:600px){.board.mb{padding:20px 12px 18px;border-radius:16px 16px 0 0}.mb-chips{margin-bottom:16px}.mb-teams{gap:2px}.mb-team{gap:10px}.mb-crest{width:98px;height:98px}.mb-name{font-size:clamp(20px,6.4vw,28px)}.mb-vs{width:78px;height:68px}.mb-info{gap:8px 16px;font-size:15px}.mb-count{gap:8px}.mb-count div{min-width:60px;padding:8px 6px}.mb-count b{font-size:26px}}
+@media (prefers-reduced-motion:reduce){.board.mb,.board.mb::after,.mb-crest,.mb-vs img,.mb-live{animation:none}}
 .tl{position:relative;display:inline-grid;place-items:center;flex:none;width:28px;height:28px;border-radius:50%;background:#fff;box-shadow:0 0 0 1px var(--line)}
 .tl img{width:68%;height:68%;object-fit:contain}
 .tl i{position:absolute;font:800 12px "Barlow Condensed",sans-serif;font-style:normal;color:#111}
@@ -136,7 +167,7 @@ td .tl{width:26px;height:26px}
     el.className = 'board mb';
     el.setAttribute('aria-label', `Prossima partita: ${h} contro ${a}`);
     el.innerHTML = `<div class="mb-chips"><span class="mb-chip">Seconda Categoria · ${g}ª giornata</span><span class="mb-chip">${h === 'Marina' ? 'In casa' : 'In trasferta'}</span></div>
-<div class="mb-teams"><div class="mb-team${h === 'Marina' ? ' us' : ''}">${crest(h)}<div class="mb-name">${esc(h)}</div></div><div class="mb-vs" aria-hidden="true">VS</div><div class="mb-team${a === 'Marina' ? ' us' : ''}">${crest(a)}<div class="mb-name">${esc(a)}</div></div></div>
+<div class="mb-teams"><div class="mb-team${h === 'Marina' ? ' us' : ''}">${crest(h)}<div class="mb-name">${esc(h)}</div></div><div class="mb-vs" aria-hidden="true"><img alt="" src="assets/vs.png" onerror="this.remove()"><span>VS</span></div><div class="mb-team${a === 'Marina' ? ' us' : ''}">${crest(a)}<div class="mb-name">${esc(a)}</div></div></div>
 <div class="mb-info"><span>${ICON.cal}${esc(dateTxt)}</span><span>${ICON.clock}ore ${esc(t)}</span>${venue ? `<span>${ICON.pin}Campo ${esc(venue)}</span>` : ''}</div>
 <div class="mb-count" id="mb-count"></div>`;
     clearInterval(timer);
