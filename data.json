@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-12T06:22:04+00:00",
+ "updated": "2026-10-12T15:56:21+00:00",
  "results": [
   {
    "g": 1,
@@ -202,13 +202,13 @@
    "h": "Intercomunale Santa Fiora",
    "a": "Sorano",
    "hg": 0,
-   "ag": 0
+   "ag": 1
   },
   {
    "g": 4,
    "h": "Manciano Marsiliana",
    "a": "Capalbio",
-   "hg": 0,
+   "hg": 2,
    "ag": 0
   },
   {
