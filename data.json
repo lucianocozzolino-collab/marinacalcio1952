@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-12T15:56:21+00:00",
+ "updated": "2026-10-12T23:09:32+00:00",
  "results": [
   {
    "g": 1,
@@ -173,8 +173,8 @@
    "g": 4,
    "h": "Amiata",
    "a": "Magliano Sant'Andrea",
-   "hg": 0,
-   "ag": 0
+   "hg": 1,
+   "ag": 2
   },
   {
    "g": 4,
@@ -187,14 +187,14 @@
    "g": 4,
    "h": "Castiglionese",
    "a": "Cinigiano",
-   "hg": 0,
+   "hg": 5,
    "ag": 0
   },
   {
    "g": 4,
    "h": "Fonteblanda",
    "a": "Alta Maremma",
-   "hg": 0,
+   "hg": 4,
    "ag": 0
   },
   {
@@ -222,7 +222,7 @@
    "g": 4,
    "h": "Montieri",
    "a": "Paganico",
-   "hg": 0,
+   "hg": 1,
    "ag": 0
   }
  ],
