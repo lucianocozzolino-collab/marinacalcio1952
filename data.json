@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-11T19:39:51+00:00",
+ "updated": "2026-10-12T06:22:04+00:00",
  "results": [
   {
    "g": 1,
@@ -171,6 +171,13 @@
   },
   {
    "g": 4,
+   "h": "Amiata",
+   "a": "Magliano Sant'Andrea",
+   "hg": 0,
+   "ag": 0
+  },
+  {
+   "g": 4,
    "h": "Campagnatico Arcille",
    "a": "Ribolla",
    "hg": 2,
@@ -178,10 +185,45 @@
   },
   {
    "g": 4,
+   "h": "Castiglionese",
+   "a": "Cinigiano",
+   "hg": 0,
+   "ag": 0
+  },
+  {
+   "g": 4,
+   "h": "Fonteblanda",
+   "a": "Alta Maremma",
+   "hg": 0,
+   "ag": 0
+  },
+  {
+   "g": 4,
+   "h": "Intercomunale Santa Fiora",
+   "a": "Sorano",
+   "hg": 0,
+   "ag": 0
+  },
+  {
+   "g": 4,
+   "h": "Manciano Marsiliana",
+   "a": "Capalbio",
+   "hg": 0,
+   "ag": 0
+  },
+  {
+   "g": 4,
    "h": "Marina",
    "a": "Sticciano",
    "hg": 1,
    "ag": 1
+  },
+  {
+   "g": 4,
+   "h": "Montieri",
+   "a": "Paganico",
+   "hg": 0,
+   "ag": 0
   }
  ],
  "matches": [
