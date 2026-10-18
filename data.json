@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-12T23:09:32+00:00",
+ "updated": "2026-10-18T06:26:21+00:00",
  "results": [
   {
    "g": 1,
@@ -546,6 +546,70 @@
    "date": "2026-10-18",
    "time": "15:30",
    "venue": "BARETTI"
+  },
+  {
+   "g": 6,
+   "h": "Amiata",
+   "a": "Sticciano",
+   "date": "2026-10-25",
+   "time": "14:30",
+   "venue": "CAMPOLMI O."
+  },
+  {
+   "g": 6,
+   "h": "Campagnatico Arcille",
+   "a": "Cinigiano",
+   "date": "2026-10-25",
+   "time": "14:30",
+   "venue": "ARCILLE"
+  },
+  {
+   "g": 6,
+   "h": "Castiglionese",
+   "a": "Capalbio",
+   "date": "2026-10-25",
+   "time": "14:30",
+   "venue": "VALDRIGHI I."
+  },
+  {
+   "g": 6,
+   "h": "Fonteblanda",
+   "a": "Magliano Sant'Andrea",
+   "date": "2026-10-25",
+   "time": "14:30",
+   "venue": "ARMENTI"
+  },
+  {
+   "g": 6,
+   "h": "Manciano Marsiliana",
+   "a": "Paganico",
+   "date": "2026-10-25",
+   "time": "14:30",
+   "venue": "BORGO MARSILIANA"
+  },
+  {
+   "g": 6,
+   "h": "Marina",
+   "a": "Intercomunale Santa Fiora",
+   "date": "2026-10-25",
+   "time": "14:30",
+   "venue": "CHERUBINI S."
+  },
+  {
+   "g": 6,
+   "h": "Montieri",
+   "a": "Sorano",
+   "date": "2026-10-25",
+   "time": "14:30",
+   "venue": "MONTIERI"
+  },
+  {
+   "g": 6,
+   "h": "Ribolla",
+   "a": "Alta Maremma",
+   "date": "2026-10-25",
+   "time": "14:30",
+   "venue": "SCIREA G."
   }
  ]
 }
