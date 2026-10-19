@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-19T17:40:18+00:00",
+ "updated": "2026-10-19T22:35:02+00:00",
  "results": [
   {
    "g": 1,
@@ -229,15 +229,15 @@
    "g": 5,
    "h": "Alta Maremma",
    "a": "Castiglionese",
-   "hg": 0,
-   "ag": 0
+   "hg": 4,
+   "ag": 3
   },
   {
    "g": 5,
    "h": "Capalbio",
    "a": "Marina",
-   "hg": 0,
-   "ag": 0
+   "hg": 1,
+   "ag": 1
   },
   {
    "g": 5,
@@ -257,8 +257,8 @@
    "g": 5,
    "h": "Paganico",
    "a": "Intercomunale Santa Fiora",
-   "hg": 0,
-   "ag": 0
+   "hg": 3,
+   "ag": 2
   },
   {
    "g": 5,
