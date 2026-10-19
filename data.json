@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-19T11:06:05+00:00",
+ "updated": "2026-10-19T17:40:18+00:00",
  "results": [
   {
    "g": 1,
@@ -244,14 +244,14 @@
    "h": "Cinigiano",
    "a": "Amiata",
    "hg": 0,
-   "ag": 0
+   "ag": 2
   },
   {
    "g": 5,
    "h": "Magliano Sant'Andrea",
    "a": "Manciano Marsiliana",
-   "hg": 0,
-   "ag": 0
+   "hg": 2,
+   "ag": 4
   },
   {
    "g": 5,
@@ -271,8 +271,8 @@
    "g": 5,
    "h": "Sorano",
    "a": "Campagnatico Arcille",
-   "hg": 0,
-   "ag": 0
+   "hg": 1,
+   "ag": 1
   },
   {
    "g": 5,
