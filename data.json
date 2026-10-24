@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-19T22:35:02+00:00",
+ "updated": "2026-10-24T04:55:27+00:00",
  "results": [
   {
    "g": 1,
@@ -264,8 +264,8 @@
    "g": 5,
    "h": "Ribolla",
    "a": "Fonteblanda",
-   "hg": 0,
-   "ag": 0
+   "hg": 1,
+   "ag": 1
   },
   {
    "g": 5,
@@ -641,7 +641,7 @@
    "a": "Paganico",
    "date": "2026-10-25",
    "time": "14:30",
-   "venue": "BORGO MARSILIANA"
+   "venue": "NICCOLAI L."
   },
   {
    "g": 6,
