@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-24T04:55:27+00:00",
+ "updated": "2026-10-25T05:07:50+00:00",
  "results": [
   {
    "g": 1,
@@ -666,6 +666,70 @@
    "date": "2026-10-25",
    "time": "14:30",
    "venue": "SCIREA G."
+  },
+  {
+   "g": 7,
+   "h": "Alta Maremma",
+   "a": "Campagnatico Arcille",
+   "date": "2026-11-01",
+   "time": "14:30",
+   "venue": "CECCHI GORI"
+  },
+  {
+   "g": 7,
+   "h": "Capalbio",
+   "a": "Amiata",
+   "date": "2026-11-01",
+   "time": "14:30",
+   "venue": "TRONCHETTI"
+  },
+  {
+   "g": 7,
+   "h": "Cinigiano",
+   "a": "Fonteblanda",
+   "date": "2026-11-01",
+   "time": "14:30",
+   "venue": "PARCO LA CROCE"
+  },
+  {
+   "g": 7,
+   "h": "Intercomunale Santa Fiora",
+   "a": "Montieri",
+   "date": "2026-11-01",
+   "time": "14:30",
+   "venue": "SANTA FIORA"
+  },
+  {
+   "g": 7,
+   "h": "Magliano Sant'Andrea",
+   "a": "Castiglionese",
+   "date": "2026-11-01",
+   "time": "14:30",
+   "venue": "S.ANDREA IN CIVILESCO"
+  },
+  {
+   "g": 7,
+   "h": "Paganico",
+   "a": "Marina",
+   "date": "2026-11-01",
+   "time": "14:30",
+   "venue": "UZIELLI A. E.A."
+  },
+  {
+   "g": 7,
+   "h": "Sorano",
+   "a": "Ribolla",
+   "date": "2026-11-01",
+   "time": "14:30",
+   "venue": "STADIO DEI PINI"
+  },
+  {
+   "g": 7,
+   "h": "Sticciano",
+   "a": "Manciano Marsiliana",
+   "date": "2026-11-01",
+   "time": "14:30",
+   "venue": "BARETTI"
   }
  ]
 }
