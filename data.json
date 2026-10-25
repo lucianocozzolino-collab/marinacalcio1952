@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-25T05:07:50+00:00",
+ "updated": "2026-10-25T21:59:57+00:00",
  "results": [
   {
    "g": 1,
@@ -280,6 +280,13 @@
    "a": "Montieri",
    "hg": 1,
    "ag": 0
+  },
+  {
+   "g": 6,
+   "h": "Campagnatico Arcille",
+   "a": "Cinigiano",
+   "hg": 2,
+   "ag": 1
   }
  ],
  "matches": [
