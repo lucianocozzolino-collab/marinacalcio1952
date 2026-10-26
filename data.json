@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-26T00:38:57+00:00",
+ "updated": "2026-10-26T20:12:48+00:00",
  "results": [
   {
    "g": 1,
@@ -314,7 +314,7 @@
    "h": "Manciano Marsiliana",
    "a": "Paganico",
    "hg": 0,
-   "ag": 0
+   "ag": 2
   },
   {
    "g": 6,
@@ -328,14 +328,14 @@
    "h": "Montieri",
    "a": "Sorano",
    "hg": 0,
-   "ag": 0
+   "ag": 8
   },
   {
    "g": 6,
    "h": "Ribolla",
    "a": "Alta Maremma",
    "hg": 0,
-   "ag": 0
+   "ag": 2
   }
  ],
  "matches": [
