@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-26T20:12:48+00:00",
+ "updated": "2026-10-27T00:00:55+00:00",
  "results": [
   {
    "g": 1,
@@ -320,8 +320,8 @@
    "g": 6,
    "h": "Marina",
    "a": "Intercomunale Santa Fiora",
-   "hg": 0,
-   "ag": 0
+   "hg": 1,
+   "ag": 2
   },
   {
    "g": 6,
