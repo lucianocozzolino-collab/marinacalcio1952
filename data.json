@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-01T07:56:27+00:00",
+ "updated": "2026-11-01T23:48:18+00:00",
  "results": [
   {
    "g": 1,
@@ -336,6 +336,13 @@
    "a": "Alta Maremma",
    "hg": 0,
    "ag": 2
+  },
+  {
+   "g": 7,
+   "h": "Intercomunale Santa Fiora",
+   "a": "Montieri",
+   "hg": 4,
+   "ag": 1
   }
  ],
  "matches": [
