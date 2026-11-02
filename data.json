@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-02T06:38:55+00:00",
+ "updated": "2026-11-02T17:22:04+00:00",
  "results": [
   {
    "g": 1,
@@ -356,7 +356,7 @@
    "h": "Cinigiano",
    "a": "Fonteblanda",
    "hg": 0,
-   "ag": 0
+   "ag": 6
   },
   {
    "g": 7,
@@ -369,7 +369,7 @@
    "g": 7,
    "h": "Magliano Sant'Andrea",
    "a": "Castiglionese",
-   "hg": 0,
+   "hg": 2,
    "ag": 0
   },
   {
@@ -391,7 +391,7 @@
    "h": "Sticciano",
    "a": "Manciano Marsiliana",
    "hg": 0,
-   "ag": 0
+   "ag": 2
   }
  ],
  "matches": [
