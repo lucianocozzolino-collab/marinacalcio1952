@@ -1,0 +1,24 @@
+name: Deploy su Altervista
+
+on:
+  push:
+    branches:
+      - main  # Cambia con "master" se il tuo ramo principale si chiama così
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Recupera il codice dal repository
+      uses: actions/checkout@v3
+
+    - name: 🚀 Carica i file tramite FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        # Se il tuo sito deve andare in una sottocartella specifica di Altervista, 
+        # puoi scommentare la riga sotto e inserire il percorso (es. /wp-content/)
+        # server-dir: ./ 
