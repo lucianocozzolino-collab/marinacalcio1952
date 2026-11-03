@@ -22,4 +22,3 @@ jobs:
         # Se il tuo sito deve andare in una sottocartella specifica di Altervista, 
         # puoi scommentare la riga sotto e inserire il percorso (es. /wp-content/)
         # server-dir: ./ 
-
