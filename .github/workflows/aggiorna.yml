@@ -32,7 +32,7 @@ jobs:
 
     - name: ⚙️ Esegui lo Scraper dei Comunicati
       run: |
-        python marinacalcio1952-main/scraper/scrape.py
+        python scraper/scrape.py
 
     - name: 🚀 Carica i file su Altervista tramite FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
